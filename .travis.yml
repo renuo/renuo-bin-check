@@ -7,6 +7,8 @@ addons:
     packages:
     - zsh
   postgresql: '9.4'
+  code_climate:
+    repo_token: c578db3d0b7d0bc01f2331b4027f54fbc0de43ede5a4c93646bf4957d3c1d962
 services:
   - postgresql
 bundler_args: --without production development --deployment --jobs=3 --retry=3
