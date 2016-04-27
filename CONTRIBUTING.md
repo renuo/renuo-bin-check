@@ -4,7 +4,7 @@
 
 Fork, then clone the repo:
 ```
-git clone git@github.com:your-username/renuo-cms-rails.git
+git clone git@github.com:your-username/renuo-bin-check.git
 ```
 
 Set up your machine:
