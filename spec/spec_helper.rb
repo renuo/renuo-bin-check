@@ -1,3 +1,4 @@
+require_relative 'code_climate'
 require 'simplecov'
 SimpleCov.start do
   add_group 'App', './lib/renuo/bin-check/app'
