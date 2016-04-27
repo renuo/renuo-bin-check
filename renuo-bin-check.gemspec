@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors = ['Zora Fuchs']
   spec.email = ['zora.fuchs@renuo.ch']
 
-  spec.summary = 'The Renuo bin-check automates running programms to check code quality of a rails application'
-  spec.description = 'The Renuo bin-check automates running programms to check code quality of a rails application'
+  spec.summary = 'The Renuo bin-check automates running programms to check code quality of a ruby application. For faster runtime it makes use of cashing and parallel execution.'
+  spec.description = 'The Renuo bin-check automates running programms to check code quality of a ruby application. For faster runtime it makes use of cashing and parallel execution.'
   spec.homepage = 'https://github.com/renuo/renuo-bin-check'
   spec.license = 'MIT'
 
@@ -29,5 +29,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'awesome_print'
   spec.add_development_dependency 'factory_girl'
-  # spec.add_development_dependency 'binding_of_caller'
 end

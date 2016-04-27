@@ -28,7 +28,7 @@ Push to your fork and [submit a pull request][pr].
 git push origin your-branch-name
 ```
 
-[pr]: https://github.com/renuo/renuo-cms-rails/compare/
+[pr]: https://github.com/renuo/renuo-bin-check/compare/
 
 At this point you're waiting on us. We like to at least comment on pull requests within three business days
 (and, typically, one business day). We may suggest some changes or improvements or alternatives.
