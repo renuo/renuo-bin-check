@@ -12,6 +12,6 @@ gem 'rspec'
 gem 'simplecov', require: false
 gem 'reek', require: false
 gem 'rubocop', require: false
-gem 'codeclimate-test-reporter', require: nil
+gem 'codeclimate-test-reporter', require: false
 
 eval_gemfile('Gemfile.local.rb') if File.exist?('Gemfile.local.rb')
