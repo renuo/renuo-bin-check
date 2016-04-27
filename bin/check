@@ -16,31 +16,31 @@ if [ $? -eq 0 ]; then
 fi
 
 
-grep -i -r 'console.log' app spec
+grep -i -r 'console.log' lib spec
 if [ $? -eq 0 ]; then
   echo 'console.log found. Please fix them and try again, commit aborted'
   exit 1
 fi
 
-grep -i -r '  puts ' app spec
+grep -i -r '  puts ' lib spec
 if [ $? -eq 0 ]; then
   echo 'puts found. Please fix them and try again, commit aborted'
   exit 1
 fi
 
-grep -i -r '  puts(' app spec
+grep -i -r '  puts(' lib spec
 if [ $? -eq 0 ]; then
   echo 'puts found. Please fix them and try again, commit aborted'
   exit 1
 fi
 
-grep -i -r '  p ' app spec
+grep -i -r '  p ' lib spec
 if [ $? -eq 0 ]; then
   echo 'p found. Please fix them and try again, commit aborted'
   exit 1
 fi
 
-grep -i -r '  p(' app spec
+grep -i -r '  p(' lib spec
 if [ $? -eq 0 ]; then
   echo 'p found. Please fix them and try again, commit aborted'
   exit 1

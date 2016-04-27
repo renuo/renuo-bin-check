@@ -1,5 +1,7 @@
 require 'simplecov'
-SimpleCov.start 'rails'
+SimpleCov.start do
+  add_group 'App', './lib/renuo/bin-check/app'
+end
 SimpleCov.minimum_coverage 100
 
 RSpec.configure do |config|
