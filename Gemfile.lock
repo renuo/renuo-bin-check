@@ -18,6 +18,8 @@ GEM
     byebug (8.2.4)
     codeclimate-engine-rb (0.3.1)
       virtus (~> 1.0)
+    codeclimate-test-reporter (0.5.0)
+      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.1)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -92,6 +94,7 @@ DEPENDENCIES
   awesome_print
   binding_of_caller
   byebug
+  codeclimate-test-reporter
   factory_girl
   pry
   pry-byebug
