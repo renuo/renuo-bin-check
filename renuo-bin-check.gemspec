@@ -20,14 +20,14 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
   spec.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
 
-  spec.add_development_dependency 'rubocop',          '>= 0.39.0'
-  spec.add_development_dependency 'reek',             '>= 4.0.1'
-  spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'pry'
-  spec.add_development_dependency 'byebug'
-  spec.add_development_dependency 'pry-byebug'
-  spec.add_development_dependency 'simplecov'
-  spec.add_development_dependency 'awesome_print'
-  spec.add_development_dependency 'factory_girl'
-  spec.add_development_dependency 'codeclimate-test-reporter'
+  spec.add_development_dependency 'rubocop',                      '>= 0.39.0'
+  spec.add_development_dependency 'reek',                         '>= 4.0.2'
+  spec.add_development_dependency 'rspec',                        '>= 3.4.0'
+  spec.add_development_dependency 'pry',                          '>= 0.10.3'
+  spec.add_development_dependency 'byebug',                       '>= 8.2.5'
+  spec.add_development_dependency 'pry-byebug',                   '>= 3.3.0'
+  spec.add_development_dependency 'simplecov',                    '>= 0.11.2'
+  spec.add_development_dependency 'awesome_print',                '>= 1.6.1'
+  spec.add_development_dependency 'factory_girl',                 '>= 4.7.0'
+  spec.add_development_dependency 'codeclimate-test-reporter',    '>= 0.5.0'
 end
