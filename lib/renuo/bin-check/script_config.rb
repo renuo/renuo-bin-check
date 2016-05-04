@@ -1,8 +1,8 @@
 module RenuoBinCheck
-  class Script
+  class ScriptConfig
     attr_reader :script_command, :script_files
     def command(command)
-      @script_command = command;
+      @script_command = command
     end
 
     def files(files)
