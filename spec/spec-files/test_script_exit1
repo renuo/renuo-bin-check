@@ -1,0 +1,5 @@
+echo "I have been running"
+echo "Now I'm tired"
+echo "I couldn't run :'(" >&2
+echo "please motivate me to" >&2
+exit 1
