@@ -6,7 +6,7 @@ module RenuoBinCheck
     end
 
     def add_thread(script_config)
-      threads << script_config
+      threads << ServantThread.new(script_config)
     end
   end
 end
