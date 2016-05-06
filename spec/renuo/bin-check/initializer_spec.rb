@@ -29,7 +29,7 @@ RSpec.describe RenuoBinCheck::Initializer do
       end
 
       begin
-        bin_check.run
+        expect { bin_check.run }.to output("I have been running\nNow I'm tired\n").to_stdout
       rescue SystemExit => se
         expect(se.status).to eq(0)
       end
@@ -44,7 +44,7 @@ RSpec.describe RenuoBinCheck::Initializer do
       end
 
       begin
-        bin_check.run
+        expect { bin_check.run }.to output("I couldn't run :'(\nplease motivate me to\n").to_stderr
       rescue SystemExit => se
         expect(se.status).to eq(1)
       end

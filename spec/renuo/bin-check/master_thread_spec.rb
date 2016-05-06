@@ -21,7 +21,7 @@ RSpec.describe RenuoBinCheck::MasterThread do
       master.add_thread(build(:failing_script))
       expect(master.printer).to receive(:print_error_output)
       begin
-        expect { master.finalize }.to output("I couldn't run :'(\nplease motivate me to\n").to_stderr
+        master.finalize
       rescue SystemExit => se
         expect(se.status).to eq(1)
       end
