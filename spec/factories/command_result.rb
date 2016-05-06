@@ -6,8 +6,8 @@ FactoryGirl.define do
     exit_code 0
     initialize_with { new(output, error_output, exit_code) }
 
-    factory :faild_result do
-      return_value '1'
+    factory :failed_result do
+      exit_code 1
     end
   end
 end
