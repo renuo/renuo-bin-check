@@ -1,4 +1,5 @@
 require 'thwait'
+
 module RenuoBinCheck
   class MasterThread
     attr_reader :threads

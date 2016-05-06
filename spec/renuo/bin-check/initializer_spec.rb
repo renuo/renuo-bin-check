@@ -3,7 +3,8 @@ require './lib/renuo/bin-check/initializer'
 
 RSpec.describe RenuoBinCheck::Initializer do
   let(:bin_check) { RenuoBinCheck::Initializer.new }
-  it 'creates a MasterThread if it is initialized' do
+
+  it 'creates a MasterThread when it is initialized' do
     expect(bin_check.runner.class).to eq(RenuoBinCheck::MasterThread)
   end
 
@@ -12,7 +13,7 @@ RSpec.describe RenuoBinCheck::Initializer do
       config.command 'blubb'
       config.files %w(file1 file2)
     end
-    expect(bin_check.runner.threads).to_not be_empty
+    expect(bin_check.runner.threads.last.class).to eq(Thread)
   end
 
   it 'makes runner handle the threads' do

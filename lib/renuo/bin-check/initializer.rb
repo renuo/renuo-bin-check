@@ -1,6 +1,7 @@
 module RenuoBinCheck
   class Initializer
     attr_reader :runner
+
     def initialize
       @runner = MasterThread.new
     end
