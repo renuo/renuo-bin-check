@@ -36,7 +36,7 @@ RSpec.describe RenuoBinCheck::Initializer do
     end
   end
 
-  context 'failing test' do
+  context 'failing script' do
     it 'runns the whole application as expected' do
       bin_check.check do |config|
         config.command './spec/spec-files/test_script_exit1'
