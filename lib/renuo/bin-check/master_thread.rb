@@ -1,3 +1,4 @@
+require 'thwait'
 module RenuoBinCheck
   class MasterThread
     attr_reader :threads
@@ -15,9 +16,9 @@ module RenuoBinCheck
     end
 
     def finalize
-      # waiter = ThreadWait.new(threads)
-      @threads.each do |thread|
-        thread.join
+      waiter = ThreadsWait.new(threads)
+      until waiter.empty?
+        thread = waiter.next_wait
         @results << thread[:result]
         exit 1 if @results.last.exit_code == 1
       end
