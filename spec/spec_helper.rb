@@ -1,5 +1,6 @@
 require_relative 'code_climate'
 require 'simplecov'
+require 'factory_girl'
 SimpleCov.start do
   add_group 'App', './lib/renuo/bin-check/app'
 end
@@ -12,6 +13,12 @@ RSpec.configure do |config|
 
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
+  end
+
+  config.include FactoryGirl::Syntax::Methods
+
+  config.before(:suite) do
+    FactoryGirl.find_definitions
   end
 
   config.run_all_when_everything_filtered = true
