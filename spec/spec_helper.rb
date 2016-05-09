@@ -1,6 +1,7 @@
 require_relative 'code_climate'
 require 'simplecov'
 require 'factory_girl'
+require 'fileutils'
 SimpleCov.start do
   add_group 'App', './lib/renuo/bin-check/app'
 end
@@ -32,4 +33,8 @@ RSpec.configure do |config|
   config.order = :random
 
   Kernel.srand config.seed
+
+  config.after(:all) do
+    FileUtils.remove_dir('./tmp/bin-check/script-name/f75c5cee2826ea881cb81b70b2d333b7')
+  end
 end
