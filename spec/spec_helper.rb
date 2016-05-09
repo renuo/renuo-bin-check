@@ -45,5 +45,6 @@ RSpec.configure do |config|
 
   config.after(:all) do
     FileUtils.remove_dir('./tmp/bin-check/script_name')
+    FileUtils.remove_dir('./tmp/bin-check/spec')
   end
 end
