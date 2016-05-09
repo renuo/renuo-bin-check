@@ -9,24 +9,24 @@ RSpec.describe RenuoBinCheck::Cacher do
   context 'results are cashed' do
     it 'returns result' do
       expect(cacher.result(['./spec/spec-files/file1', './spec/spec-files/file2'],
-                           'script-name')).to have_attributes(result_attributes)
+                           'script_name')).to have_attributes(result_attributes)
     end
   end
 
   context 'cashes do not exist' do
     it 'returns new hash' do
-      expect(cacher.result(['./spec/spec-files/file2', './spec/spec-files/file1'], 'script2-name'))
+      expect(cacher.result(['./spec/spec-files/file2', './spec/spec-files/file1'], 'script2_name'))
         .to eq('f75c3cee2826ea881cb41b70b2d333b1')
     end
   end
 
   it 'saves result to files' do
-    cacher.cache(result, 'script-name', 'f75c5cee2826ea881cb81b70b2d333b7')
-    expect(File.read('./tmp/bin-check/script-name/f75c5cee2826ea881cb81b70b2d333b7/error_output'))
+    cacher.cache(result, 'script_name', 'f75c5cee2826ea881cb81b70b2d333b7')
+    expect(File.read('./tmp/bin-check/script_name/f75c5cee2826ea881cb81b70b2d333b7/error_output'))
       .to eq(result.error_output)
-    expect(File.read('./tmp/bin-check/script-name/f75c5cee2826ea881cb81b70b2d333b7/error_output'))
+    expect(File.read('./tmp/bin-check/script_name/f75c5cee2826ea881cb81b70b2d333b7/error_output'))
       .to eq(result.error_output)
-    expect(File.read('./tmp/bin-check/script-name/f75c5cee2826ea881cb81b70b2d333b7/error_output'))
+    expect(File.read('./tmp/bin-check/script_name/f75c5cee2826ea881cb81b70b2d333b7/error_output'))
       .to eq(result.error_output)
   end
 end

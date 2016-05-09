@@ -2,7 +2,6 @@
 /log/*
 !/log/.keep
 /tmp/*
-!/tmp/bin-check/script-name/f75c3cee2826ea881cb41b70b2d333b1/*
 /.idea
 .DS_Store
 /config/application.yml

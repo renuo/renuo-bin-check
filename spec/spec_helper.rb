@@ -34,7 +34,16 @@ RSpec.configure do |config|
 
   Kernel.srand config.seed
 
+  config.before(:all) do
+    FileUtils.mkdir_p 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1'
+    File.write 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1/output',
+               "I passed\nThis is the second line\n"
+    File.write 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1/error_output',
+               "I failed\nThis is the second line\n"
+    File.write 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1/exit_code', 0
+  end
+
   config.after(:all) do
-    FileUtils.remove_dir('./tmp/bin-check/script-name/f75c5cee2826ea881cb81b70b2d333b7')
+    FileUtils.remove_dir('./tmp/bin-check/script_name')
   end
 end
