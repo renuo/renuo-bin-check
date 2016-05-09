@@ -3,7 +3,7 @@ module RenuoBinCheck
     attr_reader :runner
 
     def initialize
-      @runner = MasterThread.new(OutputPrinter.new)
+      @runner = MasterThread.new(Printer.new)
     end
 
     def check

@@ -3,7 +3,7 @@ require './lib/renuo/bin-check/master_thread'
 
 RSpec.describe RenuoBinCheck::MasterThread do
   let(:script) { build :script }
-  let(:printer) { RenuoBinCheck::OutputPrinter.new }
+  let(:printer) { RenuoBinCheck::Printer.new }
   let(:master) { RenuoBinCheck::MasterThread.new(printer) }
   it 'should add a serventThread when add_thread is called' do
     master.add_thread(script)

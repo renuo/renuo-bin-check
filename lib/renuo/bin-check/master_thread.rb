@@ -20,17 +20,17 @@ module RenuoBinCheck
     def finalize
       waiter = ThreadsWait.new(threads)
       until waiter.empty?
-        thread = waiter.next_wait
-        @results << thread[:result]
-        exit_with_error if @results.last.exit_code == 1
+        result = waiter.next_wait[:result]
+        @results << result
+        exit_with_error(result) if result.exit_code == 1
       end
       exit_with_success
     end
 
     private
 
-    def exit_with_error
-      @printer.print_error_output(@results)
+    def exit_with_error(result)
+      @printer.print_error_output(result)
       exit 1
     end
 
