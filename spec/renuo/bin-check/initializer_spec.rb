@@ -27,12 +27,13 @@ RSpec.describe RenuoBinCheck::Initializer do
         config.command './spec/spec-files/test_script_exit0'
         config.files %w(file1 file2)
       end
-
-      begin
-        expect { bin_check.run }.to output("I have been running\nNow I'm tired\n").to_stdout
-      rescue SystemExit => se
-        expect(se.status).to eq(0)
-      end
+      expect do
+        begin
+          bin_check.run
+        rescue SystemExit => se
+          expect(se.status).to eq(0)
+        end
+      end.to output("I passed\nThis is the second line\n").to_stdout
     end
   end
 
@@ -42,12 +43,29 @@ RSpec.describe RenuoBinCheck::Initializer do
         config.command './spec/spec-files/test_script_exit1'
         config.files %w(file1 file2)
       end
+      expect do
+        begin
+          bin_check.run
+        rescue SystemExit => se
+          expect(se.status).to eq(1)
+        end
+      end.to output("I failed\nThis is the second line\n").to_stderr
+    end
+  end
 
-      begin
-        expect { bin_check.run }.to output("I couldn't run :'(\nplease motivate me to\n").to_stderr
-      rescue SystemExit => se
-        expect(se.status).to eq(1)
+  context 'cached script' do
+    it 'runns the whole application as expected' do
+      bin_check.check do |config|
+        config.command './spec/spec-files/test_script_exit0'
+        config.files %w(./spec/spec-files/file1 ./spec/spec-files/file2)
       end
+      expect do
+        begin
+          bin_check.run
+        rescue SystemExit => se
+          expect(se.status).to eq(0)
+        end
+      end.to output("I'm cached\npassed\n").to_stdout
     end
   end
 end
