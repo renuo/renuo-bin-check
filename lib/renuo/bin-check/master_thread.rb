@@ -2,11 +2,12 @@ require 'thwait'
 
 module RenuoBinCheck
   class MasterThread
-    attr_reader :threads
+    attr_reader :threads, :printer
 
-    def initialize
+    def initialize(printer)
       @threads = []
       @results = []
+      @printer = printer
     end
 
     def add_thread(script_config)
@@ -19,10 +20,22 @@ module RenuoBinCheck
     def finalize
       waiter = ThreadsWait.new(threads)
       until waiter.empty?
-        thread = waiter.next_wait
-        @results << thread[:result]
-        exit 1 if @results.last.exit_code == 1
+        result = waiter.next_wait[:result]
+        @results << result
+        exit_with_error(result) if result.exit_code == 1
       end
+      exit_with_success
+    end
+
+    private
+
+    def exit_with_error(result)
+      @printer.print_error_output(result)
+      exit 1
+    end
+
+    def exit_with_success
+      @printer.print_output(@results)
       exit 0
     end
   end

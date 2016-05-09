@@ -3,7 +3,8 @@ require './lib/renuo/bin-check/master_thread'
 
 RSpec.describe RenuoBinCheck::MasterThread do
   let(:script) { build :script }
-  let(:master) { RenuoBinCheck::MasterThread.new }
+  let(:printer) { RenuoBinCheck::Printer.new }
+  let(:master) { RenuoBinCheck::MasterThread.new(printer) }
   it 'should add a serventThread when add_thread is called' do
     master.add_thread(script)
     expect(master.threads.size).to eq(1)
@@ -18,6 +19,7 @@ RSpec.describe RenuoBinCheck::MasterThread do
     it 'exits with exit code 1' do
       master.add_thread(build(:passing_script))
       master.add_thread(build(:failing_script))
+      expect(master.printer).to receive(:print_error_output)
       begin
         master.finalize
       rescue SystemExit => se
@@ -30,6 +32,7 @@ RSpec.describe RenuoBinCheck::MasterThread do
     it 'exits with exit code 0' do
       master.add_thread(build(:passing_script))
       master.add_thread(build(:passing_script))
+      expect(master.printer).to receive(:print_output)
       begin
         master.finalize
       rescue SystemExit => se
