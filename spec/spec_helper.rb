@@ -33,25 +33,4 @@ RSpec.configure do |config|
   config.order = :random
 
   Kernel.srand config.seed
-
-  config.before(:all) do
-    FileUtils.mkdir_p 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1'
-    File.write 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1/output',
-               "I passed\nThis is the second line\n"
-    File.write 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1/error_output',
-               "I failed\nThis is the second line\n"
-    File.write 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1/exit_code', 0
-
-    FileUtils.mkdir_p 'tmp/bin-check/spec/spec-files/test_script_exit0/f75c3cee2826ea881cb41b70b2d333b1'
-    File.write 'tmp/bin-check/spec/spec-files/test_script_exit0/f75c3cee2826ea881cb41b70b2d333b1/output',
-               "I'm cached\npassed\n"
-    File.write 'tmp/bin-check/spec/spec-files/test_script_exit0/f75c3cee2826ea881cb41b70b2d333b1/error_output',
-               "I'm cached\npassed\n"
-    File.write 'tmp/bin-check/spec/spec-files/test_script_exit0/f75c3cee2826ea881cb41b70b2d333b1/exit_code', 0
-  end
-
-  config.after(:all) do
-    FileUtils.remove_dir('./tmp/bin-check/script_name')
-    FileUtils.remove_dir('./tmp/bin-check/spec')
-  end
 end

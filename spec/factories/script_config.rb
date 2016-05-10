@@ -11,5 +11,10 @@ FactoryGirl.define do
     factory :passing_script do
       script_command './spec/spec-files/test_script_exit0'
     end
+
+    factory :cached_script do
+      script_command 'script_name'
+      script_files ['./spec/spec-files/file1', './spec/spec-files/file2']
+    end
   end
 end

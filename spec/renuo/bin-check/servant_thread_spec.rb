@@ -13,7 +13,7 @@ RSpec.describe RenuoBinCheck::ServantThread do
   end
 
   context 'running successfully' do
-    let(:script) { build :script, script_command: './spec/spec-files/test_script_exit0' }
+    let(:script) { build :passing_script }
     let(:servant) { RenuoBinCheck::ServantThread.new(script) }
 
     it 'starts the command defined in ScriptConfig and returns a Result' do
@@ -22,11 +22,19 @@ RSpec.describe RenuoBinCheck::ServantThread do
   end
 
   context 'finding cache' do
-    let(:script) do
-      build :script, script_command: 'script_name',
-                     script_files: ['./spec/spec-files/file1', './spec/spec-files/file2']
-    end
+    let(:script) { build :cached_script }
     let(:servant) { RenuoBinCheck::ServantThread.new(script) }
+
+    before(:each) do
+      FileUtils.mkdir_p 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1'
+      File.write 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1/output',
+                 "I passed\nThis is the second line\n"
+      File.write 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1/error_output',
+                 "I failed\nThis is the second line\n"
+      File.write 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1/exit_code', 0
+    end
+
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check/script_name') }
 
     it 'gets result from cache' do
       expect(servant.run).to have_attributes(result_attributes)

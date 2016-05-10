@@ -7,6 +7,17 @@ RSpec.describe RenuoBinCheck::Cacher do
   let(:cacher) { build(:cacher) }
 
   context 'results are cashed' do
+    before(:each) do
+      FileUtils.mkdir_p 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1'
+      File.write 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1/output',
+                 "I passed\nThis is the second line\n"
+      File.write 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1/error_output',
+                 "I failed\nThis is the second line\n"
+      File.write 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1/exit_code', 0
+    end
+
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check/script_name') }
+
     it 'returns result' do
       expect(cacher.result).to have_attributes(result_attributes)
     end
@@ -19,13 +30,17 @@ RSpec.describe RenuoBinCheck::Cacher do
     end
   end
 
-  it 'saves result to files' do
-    cacher.cache('f75c5cee2826ea881cb81b70b2d333b7', result)
-    expect(File.read('./tmp/bin-check/script_name/f75c5cee2826ea881cb81b70b2d333b7/error_output'))
-      .to eq(result.error_output)
-    expect(File.read('./tmp/bin-check/script_name/f75c5cee2826ea881cb81b70b2d333b7/output'))
-      .to eq(result.output)
-    expect(File.read('./tmp/bin-check/script_name/f75c5cee2826ea881cb81b70b2d333b7/exit_code').to_i)
-      .to eq(result.exit_code)
+  context 'save results' do
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check/script_name') }
+
+    it 'saves result to files' do
+      cacher.cache('f75c5cee2826ea881cb81b70b2d333b7', result)
+      expect(File.read('./tmp/bin-check/script_name/f75c5cee2826ea881cb81b70b2d333b7/error_output'))
+        .to eq(result.error_output)
+      expect(File.read('./tmp/bin-check/script_name/f75c5cee2826ea881cb81b70b2d333b7/output'))
+        .to eq(result.output)
+      expect(File.read('./tmp/bin-check/script_name/f75c5cee2826ea881cb81b70b2d333b7/exit_code').to_i)
+        .to eq(result.exit_code)
+    end
   end
 end

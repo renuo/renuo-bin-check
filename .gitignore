@@ -1,7 +1,7 @@
 /.bundle
 /log/*
 !/log/.keep
-/tmp/*
+/tmp
 /.idea
 .DS_Store
 /config/application.yml
@@ -10,4 +10,3 @@
 .byebug_history
 /.env
 .tsdrc
-
