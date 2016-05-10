@@ -26,6 +26,15 @@ RSpec.describe RenuoBinCheck::ServantThread do
     end
   end
 
+  context 'without file' do
+    let(:script) { build :without_files_script }
+    let(:servant) { RenuoBinCheck::ServantThread.new(script) }
+
+    it 'starts the command defined in ScriptConfig and returns a Result' do
+      expect(servant.run).to have_attributes(result_attributes)
+    end
+  end
+
   context 'finding cache' do
     let(:script) { build :cached_script }
     let(:servant) { RenuoBinCheck::ServantThread.new(script) }

@@ -34,6 +34,10 @@ RSpec.describe RenuoBinCheck::ScriptConfig do
 'check')
     end
 
-    it 'does nothing'
+    it 'returns empty string' do
+      script = RenuoBinCheck::ScriptConfig.new
+      script.command 'super cool command'
+      expect(script.script_files).to be_falsey
+    end
   end
 end

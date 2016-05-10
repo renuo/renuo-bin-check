@@ -13,6 +13,10 @@ FactoryGirl.define do
     factory :passing_script do
       script_command './spec/spec-files/test_script_exit0'
       script_name 'exit0'
+
+      factory :without_files_script do
+        script_files nil
+      end
     end
 
     factory :cached_script do
