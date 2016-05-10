@@ -6,26 +6,30 @@ module RenuoBinCheck
     def initialize(name, paths)
       @name = name
       @file_names = paths.map { |path| Dir[path] }.flatten.sort
+      @hash = hash_files
+    end
+
+    def exists?
+      File.exist?("tmp/bin-check/#{@name}/#{@hash}")
     end
 
     def result
-      hash = hash_files
-      File.exist?("tmp/bin-check/#{@name}/#{hash}") ? read(hash) : hash
+      read
     end
 
-    def cache(hash, result)
-      FileUtils.mkdir_p "tmp/bin-check/#{@name}/#{hash}"
-      File.write "tmp/bin-check/#{@name}/#{hash}/output", result.output
-      File.write "tmp/bin-check/#{@name}/#{hash}/error_output", result.error_output
-      File.write "tmp/bin-check/#{@name}/#{hash}/exit_code", result.exit_code
+    def cache(result)
+      FileUtils.mkdir_p "tmp/bin-check/#{@name}/#{@hash}"
+      File.write "tmp/bin-check/#{@name}/#{@hash}/output", result.output
+      File.write "tmp/bin-check/#{@name}/#{@hash}/error_output", result.error_output
+      File.write "tmp/bin-check/#{@name}/#{@hash}/exit_code", result.exit_code
     end
 
     private
 
-    def read(hash)
-      output = File.read("tmp/bin-check/#{@name}/#{hash}/output")
-      error_output = File.read("tmp/bin-check/#{@name}/#{hash}/error_output")
-      exit_code = File.read("tmp/bin-check/#{@name}/#{hash}/exit_code").to_i
+    def read
+      output = File.read("tmp/bin-check/#{@name}/#{@hash}/output")
+      error_output = File.read("tmp/bin-check/#{@name}/#{@hash}/error_output")
+      exit_code = File.read("tmp/bin-check/#{@name}/#{@hash}/exit_code").to_i
       CommandResult.new(output, error_output, exit_code)
     end
 

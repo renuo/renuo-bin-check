@@ -8,18 +8,16 @@ module RenuoBinCheck
     end
 
     def run
-      if cache.class == String
-        hash = @result
-        Open3.popen3(@script.script_command) do |_stdin, stdout, stderr, wait_thr|
-          @result = CommandResult.new(stdout.read, stderr.read, wait_thr.value.exitstatus)
-        end
-        @cacher.cache(hash, @result)
-      end
-      @result
+      @cacher.cache(run_command) unless @cacher.exists?
+      @cacher.result
     end
 
-    def cache
-      @result = @cacher.result
+    private
+
+    def run_command
+      Open3.popen3(@script.script_command) do |_stdin, stdout, stderr, wait_thr|
+        @result = CommandResult.new(stdout.read, stderr.read, wait_thr.value.exitstatus)
+      end
     end
   end
 end
