@@ -4,7 +4,7 @@ module RenuoBinCheck
     attr_accessor :script
     def initialize(script_config)
       @script = script_config
-      @cacher = Cacher.new(@script.script_command, @script.script_files)
+      @cacher = Cacher.new(@script.script_name, @script.script_files)
     end
 
     def run

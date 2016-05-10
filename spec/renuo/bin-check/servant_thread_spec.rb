@@ -10,6 +10,11 @@ RSpec.describe RenuoBinCheck::ServantThread do
       servant = RenuoBinCheck::ServantThread.new(script)
       expect(servant.script).to eq(script)
     end
+
+    it 'initializes cacher with script_name' do
+      expect(script).to receive(:script_name).and_return('nice name')
+      RenuoBinCheck::ServantThread.new(script)
+    end
   end
 
   context 'running successfully' do

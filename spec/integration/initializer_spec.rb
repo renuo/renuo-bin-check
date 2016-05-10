@@ -4,12 +4,13 @@ require './lib/renuo/bin-check/initializer'
 RSpec.describe RenuoBinCheck::Initializer do
   let(:bin_check) { RenuoBinCheck::Initializer.new }
 
-  after(:each) { FileUtils.remove_dir('./tmp/bin-check/spec') }
-
   context 'passing script' do
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check/exit0') }
+
     it 'runns the whole application as expected' do
       bin_check.check do |config|
         config.command './spec/spec-files/test_script_exit0'
+        config.name 'exit0'
         config.files %w(file1 file2)
       end
       expect do
@@ -23,10 +24,13 @@ RSpec.describe RenuoBinCheck::Initializer do
   end
 
   context 'failing script' do
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check/exit1') }
+
     it 'runns the whole application as expected' do
       bin_check.check do |config|
         config.command './spec/spec-files/test_script_exit1'
         config.files %w(file1 file2)
+        config.name 'exit1'
       end
       expect do
         begin
@@ -40,18 +44,21 @@ RSpec.describe RenuoBinCheck::Initializer do
 
   context 'cached script' do
     before(:each) do
-      FileUtils.mkdir_p 'tmp/bin-check/spec/spec-files/test_script_exit0/f75c3cee2826ea881cb41b70b2d333b1'
-      File.write 'tmp/bin-check/spec/spec-files/test_script_exit0/f75c3cee2826ea881cb41b70b2d333b1/output',
+      FileUtils.mkdir_p 'tmp/bin-check/exit0/f75c3cee2826ea881cb41b70b2d333b1'
+      File.write 'tmp/bin-check/exit0/f75c3cee2826ea881cb41b70b2d333b1/output',
                  "I'm cached\npassed\n"
-      File.write 'tmp/bin-check/spec/spec-files/test_script_exit0/f75c3cee2826ea881cb41b70b2d333b1/error_output',
+      File.write 'tmp/bin-check/exit0/f75c3cee2826ea881cb41b70b2d333b1/error_output',
                  "I'm cached\npassed\n"
-      File.write 'tmp/bin-check/spec/spec-files/test_script_exit0/f75c3cee2826ea881cb41b70b2d333b1/exit_code', 0
+      File.write 'tmp/bin-check/exit0/f75c3cee2826ea881cb41b70b2d333b1/exit_code', 0
     end
+
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check/exit0') }
 
     it 'runns the whole application as expected' do
       bin_check.check do |config|
         config.command './spec/spec-files/test_script_exit0'
         config.files %w(./spec/spec-files/file1 ./spec/spec-files/file2)
+        config.name 'exit0'
       end
       expect do
         begin
