@@ -5,6 +5,7 @@ RSpec.describe RenuoBinCheck::MasterThread do
   let(:script) { build :script }
   let(:printer) { RenuoBinCheck::Printer.new }
   let(:master) { RenuoBinCheck::MasterThread.new(printer) }
+
   it 'should add a serventThread when add_thread is called' do
     master.add_thread(script)
     expect(master.threads.size).to eq(1)
@@ -16,6 +17,7 @@ RSpec.describe RenuoBinCheck::MasterThread do
   end
 
   context 'one script fails' do
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check/exit1') }
     it 'exits with exit code 1' do
       master.add_thread(build(:passing_script))
       master.add_thread(build(:failing_script))
@@ -29,6 +31,7 @@ RSpec.describe RenuoBinCheck::MasterThread do
   end
 
   context 'all scripts pass' do
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check/exit0') }
     it 'exits with exit code 0' do
       master.add_thread(build(:passing_script))
       master.add_thread(build(:passing_script))
