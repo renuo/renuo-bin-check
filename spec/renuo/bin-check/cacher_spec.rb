@@ -8,12 +8,12 @@ RSpec.describe RenuoBinCheck::Cacher do
 
   context 'results are cashed' do
     before(:each) do
-      FileUtils.mkdir_p 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1'
-      File.write 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1/output',
+      FileUtils.mkdir_p 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019'
+      File.write 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/output',
                  "I passed\nThis is the second line\n"
-      File.write 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1/error_output',
+      File.write 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/error_output',
                  "I failed\nThis is the second line\n"
-      File.write 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1/exit_code', 0
+      File.write 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/exit_code', 0
     end
 
     after(:each) { FileUtils.remove_dir('./tmp/bin-check/script_name') }
@@ -21,12 +21,17 @@ RSpec.describe RenuoBinCheck::Cacher do
     it 'returns result' do
       expect(cacher.result).to have_attributes(result_attributes)
     end
+
+    it 'recognizes different file names' do
+      cacher = build(:copy_found_cacher)
+      expect(cacher.result).to eq('2274bc61e398012b39c3257ece7e0440')
+    end
   end
 
   context 'cashes do not exist' do
     let(:cacher) { build(:not_found_cacher) }
     it 'returns new hash' do
-      expect(cacher.result).to eq('f75c3cee2826ea881cb41b70b2d333b1')
+      expect(cacher.result).to eq('df57ab93c06ded11a01f2de950307019')
     end
   end
 

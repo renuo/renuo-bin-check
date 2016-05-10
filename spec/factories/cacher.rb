@@ -5,8 +5,12 @@ FactoryGirl.define do
     paths ['./spec/spec-files/file1', './spec/spec-files/file2']
     initialize_with { new(command, paths) }
 
-    factory :not_found_cacher, class: RenuoBinCheck::Cacher do
+    factory :not_found_cacher do
       command 'script_name2'
+    end
+
+    factory :copy_found_cacher do
+      paths ['./spec/spec-files/file1', './spec/spec-files/file2_copy']
     end
   end
 end

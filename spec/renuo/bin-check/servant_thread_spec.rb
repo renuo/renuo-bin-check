@@ -31,12 +31,12 @@ RSpec.describe RenuoBinCheck::ServantThread do
     let(:servant) { RenuoBinCheck::ServantThread.new(script) }
 
     before(:each) do
-      FileUtils.mkdir_p 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1'
-      File.write 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1/output',
+      FileUtils.mkdir_p 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019'
+      File.write 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/output',
                  "I passed\nThis is the second line\n"
-      File.write 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1/error_output',
+      File.write 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/error_output',
                  "I failed\nThis is the second line\n"
-      File.write 'tmp/bin-check/script_name/f75c3cee2826ea881cb41b70b2d333b1/exit_code', 0
+      File.write 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/exit_code', 0
     end
 
     after(:each) { FileUtils.remove_dir('./tmp/bin-check/script_name') }

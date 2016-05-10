@@ -5,7 +5,7 @@ module RenuoBinCheck
   class Cacher
     def initialize(name, paths)
       @name = name
-      @files = paths.map { |path| Dir[path] }.flatten.sort
+      @file_names = paths.map { |path| Dir[path] }.flatten.sort
     end
 
     def result
@@ -30,7 +30,12 @@ module RenuoBinCheck
     end
 
     def hash_files
-      Digest::MD5.hexdigest @files.map { |file| Digest::MD5.file(file).hexdigest if File.file? file }.to_s
+      Digest::MD5.hexdigest @file_names.map { |file_name| hash_file(file_name) if File.file? file_name }.to_s
+    end
+
+    #:reek:UtilityFunction
+    def hash_file(file_name)
+      Digest::MD5.file(file_name).hexdigest + Digest::MD5.hexdigest(file_name)
     end
   end
 end
