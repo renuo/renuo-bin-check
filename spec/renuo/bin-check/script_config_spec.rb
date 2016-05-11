@@ -26,5 +26,18 @@ RSpec.describe RenuoBinCheck::ScriptConfig do
       script.command 'super cool command'
       expect(script.script_name).to eq('b4ba9254f12d6385060ae4a2c32084e2')
     end
+
+    it 'raises a RuntimeError' do
+      script = RenuoBinCheck::ScriptConfig.new
+      expect { script.script_command }.to raise_error(RuntimeError, 'There must be a command set for each script you' \
+' want to run. Find further instruction on how to use this Gem here in the Readme: https://github.com/renuo/renuo-bin-'\
+'check')
+    end
+
+    it 'returns empty string' do
+      script = RenuoBinCheck::ScriptConfig.new
+      script.command 'super cool command'
+      expect(script.script_files).to be_falsey
+    end
   end
 end
