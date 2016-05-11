@@ -9,7 +9,7 @@ if [ $? -eq 0 ]; then
   exit 1
 fi
 
-grep -i -r 'TODO' lib spec README.md Gemfile
+grep -i -r 'TODO' lib spec Gemfile
 if [ $? -eq 0 ]; then
   echo 'TODOs found. Please fix them and try again, commit aborted'
   exit 1
