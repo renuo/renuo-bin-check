@@ -21,6 +21,8 @@ RSpec.describe RenuoBinCheck::ServantThread do
     let(:script) { build :passing_script }
     let(:servant) { RenuoBinCheck::ServantThread.new(script) }
 
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check/exit0') }
+
     it 'starts the command defined in ScriptConfig and returns a Result' do
       expect(servant.run).to have_attributes(result_attributes)
     end
@@ -29,6 +31,18 @@ RSpec.describe RenuoBinCheck::ServantThread do
   context 'without file' do
     let(:script) { build :without_files_script }
     let(:servant) { RenuoBinCheck::ServantThread.new(script) }
+
+    it 'starts the command defined in ScriptConfig and returns a Result' do
+      expect(servant.run).to have_attributes(result_attributes)
+    end
+  end
+
+  context 'with reversed_exit' do
+    let(:script) { build :reversed_exit_script }
+    let(:servant) { RenuoBinCheck::ServantThread.new(script) }
+    let(:result_attributes) { attributes_for :reversed_exit_result }
+
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check/exit0') }
 
     it 'starts the command defined in ScriptConfig and returns a Result' do
       expect(servant.run).to have_attributes(result_attributes)

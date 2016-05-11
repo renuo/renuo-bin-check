@@ -21,6 +21,21 @@ RSpec.describe RenuoBinCheck::Initializer do
         end
       end.to output("I passed\nThis is the second line\n").to_stdout
     end
+
+    it 'runns the whole application as expected using a one liner command' do
+      bin_check.check do |config|
+        config.command "grep -i -r 'console.lo' lib spec"
+        config.name 'exit0'
+        config.files %w(file1 file2)
+      end
+      expect do
+        begin
+          bin_check.run
+        rescue SystemExit => se
+          expect(se.status).to eq(0)
+        end
+      end.to output.to_stdout
+    end
   end
 
   context 'failing script' do

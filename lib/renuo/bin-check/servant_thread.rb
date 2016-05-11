@@ -20,8 +20,18 @@ module RenuoBinCheck
     end
 
     def run_command
+      @script.reversed_exit? ? run_reversed : run_normally
+    end
+
+    def run_normally
       Open3.popen3(@script.script_command) do |_stdin, stdout, stderr, wait_thr|
-        @result = CommandResult.new(stdout.read, stderr.read, wait_thr.value.exitstatus)
+        CommandResult.new(stdout.read, stderr.read, wait_thr.value.exitstatus)
+      end
+    end
+
+    def run_reversed
+      Open3.popen3(@script.script_command) do |_stdin, stdout, stderr, wait_thr|
+        CommandResult.new(stderr.read, stdout.read, wait_thr.value.exitstatus == 0 ? 1 : 0)
       end
     end
   end
