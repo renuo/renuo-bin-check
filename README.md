@@ -100,7 +100,8 @@ The configuration options can be called in any order.
 
 ```rb
 bin_check.check do |config|
-  config.command "grep --exclude-dir='app/assets/typings/**' -i -r 'TODO' app spec config db Rakefile README.md Gemfile"
+  config.command "grep --exclude-dir='app/assets/typings/**' -i -r 'TODO'"\
+                  "app spec config db Rakefile README.md Gemfile"
   config.name "todo-grepper"
   config.files ['app/**/*', 'spec/**/*', 'config/**/*', 'db/**/*', 'Rakefile', 'README.md', 'Gemfile']
   config.reversed_exit true
