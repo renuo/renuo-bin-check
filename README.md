@@ -2,6 +2,7 @@
 # renuo-bin-check
 
 ## Setup
+
 ```
 git clone git@github.com:renuo/renuo-bin-check.git
 cd renuo-bin-check
@@ -9,10 +10,13 @@ bin/setup
 ```
 
 ## Run Tests
+
 The following script will run rspec, rubocop, reek, scanner for debugging outputs and a scanner for TODOs
+
 ```
 bin/check
 ```
+
 Run automated tests only with: `rspec`
 
 Run Lining only: `rubocop`
@@ -20,9 +24,11 @@ Run Lining only: `rubocop`
 Run Code Smell detector only: `reek``
 
 ## How To Use Renuo-Bin-Check
+
 Install Renuo-Bin-Check locally: see Setup
 
 Add Renuo-Bin-Check to your Gemfile:
+
 ```rb
 gem 'renuo-bin-check', path: '<path-to-renuo-bin-check>'
 ```
@@ -30,6 +36,7 @@ gem 'renuo-bin-check', path: '<path-to-renuo-bin-check>'
 Create a file at any place you want. Usually it would be called bin/check though.
 
 You can now configure your scripts like that:
+
 ```rb
 # Include all ruby files of renuo-bin-check
 Dir["<path-to-renuo-bin-check>/lib/renuo/bin-check/*.rb"].each { |file| require file }
@@ -50,10 +57,14 @@ bin_check.run
 ```
 
 ### Options
+
 #### command
+
 This option is required. It is either a one-liner such as `ls -al` or a path to a script, that will be runned.
 If command is not configured, the program will raise a RuntimeError.
+
 #### name
+
 This option is optional. It makes it possible to configure the name of the script. 
 It will be used as folder name in the cache.
 
@@ -61,12 +72,16 @@ If it is not set, the hashed command will be used as folder name in the cache.
 
 Attention: If you set the same name twice, it won't raise an error, 
 but it can cause unexpected behaviour, hence it is not recommanded to do so.
+
 #### files
+
 This option is optional. If configured the script output will be cached. You need to list all files in array form, 
 which influence the outcome of the configured script.
 
 Even though this option is optional, it is recommended to set it, as it can make a run much faster.
+
 #### reversed_exit
+
 This option is optional. You can set it truthy or falsey. if not set it's automatically set falsey.
 
 If set to truthy, the output of the configured script will be reversed. Which means:
@@ -77,9 +92,12 @@ If set to truthy, the output of the configured script will be reversed. Which me
 
 An example where this option is used, is the command that searches for TODOs. 
 The script should fail though if something is found and not if nothing is found.
+
 #### Example
+
 The following example configures a script that looks for TODOs in a project.
 The configuration options can be called in any order.
+
 ```rb
 bin_check.check do |config|
   config.command "grep --exclude-dir='app/assets/typings/**' -i -r 'TODO' app spec config db Rakefile README.md Gemfile"
@@ -88,7 +106,9 @@ bin_check.check do |config|
   config.reversed_exit true
 end
 ```
+
 ## Contribute
+
 If you would like to contribute, you're very welcome to.
 
 Please follow these instructions:
@@ -98,6 +118,7 @@ https://github.com/renuo/renuo-bin-check/blob/develop/CONTRIBUTING.md
 https://github.com/renuo/renuo-bin-check/blob/develop/CODE_OF_CONDUCT.md
 
 ## License
+
 Copyright (c) 2016 Renuo GmbH
 
 MIT License
