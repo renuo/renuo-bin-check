@@ -1,8 +1,8 @@
 require 'spec_helper'
-require './lib/renuo/bin-check/command_result'
+require './lib/renuo/bin-check/result'
 
-RSpec.describe RenuoBinCheck::CommandResult do
-  let(:result) { RenuoBinCheck::CommandResult.new('heyaa', 'noooo', 0) }
+RSpec.describe RenuoBinCheck::Result do
+  let(:result) { RenuoBinCheck::Result.new('heyaa', 'noooo', 0) }
 
   it 'initializes output with given output' do
     expect(result.output).to eq('heyaa')

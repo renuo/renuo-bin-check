@@ -30,7 +30,7 @@ module RenuoBinCheck
       output = File.read("tmp/bin-check/#{@name}/#{@hash}/output")
       error_output = File.read("tmp/bin-check/#{@name}/#{@hash}/error_output")
       exit_code = File.read("tmp/bin-check/#{@name}/#{@hash}/exit_code").to_i
-      CommandResult.new(output, error_output, exit_code)
+      Result.new(output, error_output, exit_code)
     end
 
     def hash_files

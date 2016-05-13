@@ -1,7 +1,7 @@
 require 'open3'
 module RenuoBinCheck
   class ServantThread
-    attr_accessor :script
+    attr_reader :script
     def initialize(script_config)
       @script = script_config
       script_files = @script.script_files
@@ -21,7 +21,7 @@ module RenuoBinCheck
 
     def run_command
       Open3.popen3(@script.script_command) do |_stdin, stdout, stderr, wait_thr|
-        @result = CommandResult.new(stdout.read, stderr.read, wait_thr.value.exitstatus)
+        @result = Result.new(stdout.read, stderr.read, wait_thr.value.exitstatus)
       end
     end
   end
