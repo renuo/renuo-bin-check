@@ -46,9 +46,9 @@ bin_check = RenuoBinCheck::Initializer.new
 
 # add a script, do this for as many scripts as you would like to run
 bin_check.check do |config|
-  config.command "a one line command or a path to a script"
-  config.name "name-of-script"
-  config.files ['<path-to-file-1>', 'path-to-file-2]
+  config.command "<a one line command or a path to a script>"
+  config.name "<name-of-script>"
+  config.files ['<path-to-file-1>', '<path-to-file-2>']
   config.reversed_exit <true or false>
 end
 
