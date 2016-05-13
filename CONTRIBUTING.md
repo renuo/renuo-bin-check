@@ -10,17 +10,17 @@ git clone git@github.com:your-username/renuo-bin-check.git
 Set up your machine:
 ```
 git checkout -b your-branch-name
-bundle
+bin/setup
 ```
 
 Make sure the tests pass:
 ```
-rake
+bin/check
 ```
 
 Make your change. Add tests for your change. Make the tests pass:
 ```
-rake
+bin/check
 ```
 
 Push to your fork and [submit a pull request][pr].
