@@ -16,7 +16,7 @@ RSpec.describe RenuoBinCheck::Cacher do
       File.write 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/exit_code', 0
     end
 
-    after(:each) { FileUtils.remove_dir('./tmp/bin-check/script_name') }
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check') }
 
     it 'returns result' do
       expect(cacher.result).to have_attributes(result_attributes)
@@ -36,7 +36,7 @@ RSpec.describe RenuoBinCheck::Cacher do
   end
 
   context 'save results' do
-    after(:each) { FileUtils.remove_dir('./tmp/bin-check/script_name') }
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check') }
 
     it 'saves result to files' do
       cacher.cache(result)
