@@ -93,7 +93,7 @@ If set to truthy, the output of the configured script will be reversed. Which me
 An example where this option is used, is the command that searches for TODOs. 
 The script should fail though if something is found and not if nothing is found.
 
-#### Example
+### Example
 
 The following example configures a script that looks for TODOs in a project.
 The configuration options can be called in any order.
