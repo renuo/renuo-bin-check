@@ -5,7 +5,7 @@ RSpec.describe RenuoBinCheck::Initializer do
   let(:bin_check) { RenuoBinCheck::Initializer.new }
 
   it 'creates a MasterThread when it is initialized' do
-    expect(bin_check.runner.class).to eq(RenuoBinCheck::MasterThread)
+    expect(bin_check.master_thread.class).to eq(RenuoBinCheck::MasterThread)
   end
 
   it 'creates ScriptConfig and adds it to runner' do
@@ -13,11 +13,11 @@ RSpec.describe RenuoBinCheck::Initializer do
       config.command 'blubb'
       config.files %w(file1 file2)
     end
-    expect(bin_check.runner.threads.last.class).to eq(Thread)
+    expect(bin_check.master_thread.threads.last.class).to eq(Thread)
   end
 
   it 'makes runner handle the threads' do
-    expect(bin_check.runner).to receive(:finalize)
+    expect(bin_check.master_thread).to receive(:finalize)
     bin_check.run
   end
 end
