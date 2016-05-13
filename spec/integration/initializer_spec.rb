@@ -71,7 +71,7 @@ RSpec.describe RenuoBinCheck::Initializer do
       File.write 'tmp/bin-check/exit0/df57ab93c06ded11a01f2de950307019/exit_code', 0
     end
 
-    after(:each) { FileUtils.remove_dir('./tmp/bin-check/exit0') }
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check') }
 
     it 'returns cached output and exit-code' do
       bin_check.check do |config|
@@ -90,7 +90,7 @@ RSpec.describe RenuoBinCheck::Initializer do
   end
 
   context 'saving to exit0 folder' do
-    after(:each) { FileUtils.remove_dir('./tmp/bin-check/exit0') }
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check') }
 
     it 'saves output and exit-code to files in folder named by given name' do
       bin_check.check do |config|
@@ -115,7 +115,7 @@ RSpec.describe RenuoBinCheck::Initializer do
   end
 
   context 'saving to 65a98809d7447e9857b9acf1fbc89dcc folder' do
-    after(:each) { FileUtils.remove_dir('./tmp/bin-check/65a98809d7447e9857b9acf1fbc89dcc') }
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check') }
 
     it 'saves output and exit-code to files in folder named by hashed command' do
       bin_check.check do |config|

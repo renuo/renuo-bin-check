@@ -48,7 +48,7 @@ RSpec.describe RenuoBinCheck::ServantThread do
       File.write 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/exit_code', 0
     end
 
-    after(:each) { FileUtils.remove_dir('./tmp/bin-check/script_name') }
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check') }
 
     it 'gets result from cache' do
       expect(servant.run).to have_attributes(result_attributes)

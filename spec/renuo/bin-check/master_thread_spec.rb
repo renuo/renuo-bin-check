@@ -17,7 +17,7 @@ RSpec.describe RenuoBinCheck::MasterThread do
   end
 
   context 'one script fails' do
-    after(:each) { FileUtils.remove_dir('./tmp/bin-check/exit1') }
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check') }
     it 'exits with exit code 1' do
       master.add_thread(build(:passing_script))
       master.add_thread(build(:failing_script))
@@ -31,7 +31,7 @@ RSpec.describe RenuoBinCheck::MasterThread do
   end
 
   context 'all scripts pass' do
-    after(:each) { FileUtils.remove_dir('./tmp/bin-check/exit0') }
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check') }
     it 'exits with exit code 0' do
       master.add_thread(build(:passing_script))
       master.add_thread(build(:passing_script))
