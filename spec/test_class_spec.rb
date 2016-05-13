@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './app/test_class'
+require './lib/renuo/bin-check/app/test_class'
 
 RSpec.describe 'simple test' do
   it 'should return true' do
