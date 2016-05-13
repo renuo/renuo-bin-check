@@ -23,11 +23,11 @@ Run Lining only: `rubocop`
 
 Run Code Smell detector only: `reek``
 
-## How To Use Renuo-Bin-Check
+## How To Use renuo-bin-check
 
-Install Renuo-Bin-Check locally: see Setup
+Install renuo-bin-check locally: see Setup
 
-Add Renuo-Bin-Check to your Gemfile:
+Add renuo-bin-check to your Gemfile:
 
 ```rb
 gem 'renuo-bin-check', path: '<path-to-renuo-bin-check>'
