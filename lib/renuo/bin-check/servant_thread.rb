@@ -20,8 +20,8 @@ module RenuoBinCheck
     end
 
     def run_command
-      o, e, s = Open3.capture3(@script_config.script_command)
-      Result.new(o, e, s.exitstatus)
+      output, error_output, process = Open3.capture3(@script_config.script_command)
+      Result.new(output, error_output, process.exitstatus)
     end
   end
 end
