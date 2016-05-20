@@ -20,17 +20,13 @@ module RenuoBinCheck
     end
 
     def run_command
-      @script_config.reversed_exit? ? run_reversed : run_normally
+      output, error_output, process = Open3.capture3(@script_config.script_command)
+      @result = Result.new(output, error_output, process.exitstatus)
+      @script_config.reversed_exit? ? reverse_result : @result
     end
 
-    def run_normally
-      output, error_output, process = Open3.capture3(@script_config.script_command)
-      Result.new(output, error_output, process.exitstatus)
-    end
-
-    def run_reversed
-      output, error_output, process = Open3.capture3(@script_config.script_command)
-      Result.new(error_output, output, process.exitstatus == 0 ? 1 : 0)
+    def reverse_result
+      Result.new(@result.error_output, @result.output, @result.exit_code == 0 ? 1 : 0)
     end
   end
 end
