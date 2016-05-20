@@ -54,7 +54,7 @@ RSpec.describe RenuoBinCheck::Initializer do
         expect(se.status).to eq(0)
       end
       end_time = Time.now
-      expect(end_time - start_time).to be_within(0.1).of(2)
+      expect(end_time - start_time).to be_within(0.4).of(2)
     end
   end
 
