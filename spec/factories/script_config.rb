@@ -17,6 +17,10 @@ FactoryGirl.define do
       factory :without_files_script do
         script_files nil
       end
+
+      factory :reversed_exit_script do
+        script_reversed_exit true
+      end
     end
 
     factory :cached_script do
