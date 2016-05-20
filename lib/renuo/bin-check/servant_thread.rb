@@ -20,9 +20,8 @@ module RenuoBinCheck
     end
 
     def run_command
-      Open3.popen3(@script_config.script_command) do |_stdin, stdout, stderr, wait_thr|
-        @result = Result.new(stdout.read, stderr.read, wait_thr.value.exitstatus)
-      end
+      o, e, s = Open3.capture3(@script_config.script_command)
+      Result.new(o, e, s.exitstatus)
     end
   end
 end
