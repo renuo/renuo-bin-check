@@ -44,21 +44,18 @@ RSpec.describe RenuoBinCheck::Initializer do
       end.to output("I failed\nThis is the second line\n").to_stderr
     end
 
-    ## This test is temporary commented out, as it is not passing. Investigations are in process.
-    # it 'runns scripts parallel' do
-    #   start_time = Time.now
-    #   bin_check.check { |config| config.command './spec/spec-files/test_script_sleep1' }
-    #   bin_check.check { |config| config.command './spec/spec-files/test_script_sleep2' }
-    #   # expect do
-    #   begin
-    #     bin_check.run
-    #   rescue SystemExit => se
-    #     expect(se.status).to eq(0)
-    #   end
-    #   # end.to output("I passed\nThis is the second line\n").to_stdout
-    #   end_time = Time.now
-    #   expect(end_time - start_time).to eq(2)
-    # end
+    it 'runns scripts parallel' do
+      start_time = Time.now
+      bin_check.check { |config| config.command './spec/spec-files/test_script_sleep1' }
+      bin_check.check { |config| config.command './spec/spec-files/test_script_sleep2' }
+      begin
+        bin_check.run
+      rescue SystemExit => se
+        expect(se.status).to eq(0)
+      end
+      end_time = Time.now
+      expect(end_time - start_time).to be > 2
+    end
   end
 
   context 'cached script' do
