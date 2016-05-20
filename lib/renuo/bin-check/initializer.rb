@@ -1,19 +1,19 @@
 module RenuoBinCheck
   class Initializer
-    attr_reader :runner
+    attr_reader :master_thread
 
     def initialize
-      @runner = MasterThread.new(Printer.new)
+      @master_thread = MasterThread.new(Printer.new)
     end
 
     def check
       config = ScriptConfig.new
       yield(config)
-      @runner.add_thread(config)
+      @master_thread.add_thread(config)
     end
 
     def run
-      @runner.finalize
+      @master_thread.finalize
     end
   end
 end
