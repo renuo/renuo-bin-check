@@ -4,7 +4,6 @@ FactoryGirl.define do
     script_command 'cool command'
     script_name 'script_name'
     script_files %w(cool_file1 cool_file1)
-    script_reversed_exit false
 
     factory :failing_script do
       script_command './spec/spec-files/test_script_exit1'
