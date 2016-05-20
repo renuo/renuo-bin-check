@@ -1,6 +1,2 @@
 sleep 2
- echo "I passed" 
-echo "This is the second line" 
-echo "I failed" >&2
- echo "This is the second line" >&2
  exit 0
