@@ -1,0 +1,3 @@
+echo "I failed"
+echo "This is the second line"
+exit 1
