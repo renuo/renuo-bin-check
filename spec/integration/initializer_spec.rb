@@ -44,6 +44,19 @@ RSpec.describe RenuoBinCheck::Initializer do
       end.to output("I failed\nThis is the second line\n").to_stderr
     end
 
+    it 'returns exit-code 1 and expected non-error-output' do
+      bin_check.check do |config|
+        config.command './spec/spec-files/test_script_exit1_no_error_output'
+      end
+      expect do
+        begin
+          bin_check.run
+        rescue SystemExit => se
+          expect(se.status).to eq(1)
+        end
+      end.to output("I failed\nThis is the second line\n").to_stderr
+    end
+
     it 'runns scripts parallel' do
       start_time = Time.now
       bin_check.check { |config| config.command './spec/spec-files/test_script_sleep1' }

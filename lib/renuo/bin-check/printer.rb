@@ -7,7 +7,9 @@ module RenuoBinCheck
 
     # :reek:UtilityFunction
     def print_error_output(result)
-      $stderr.puts result.error_output
+      error_output = result.error_output
+      error_output = result.output if error_output == ''
+      $stderr.puts error_output
     end
   end
 end
