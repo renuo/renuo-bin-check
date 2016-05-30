@@ -3,7 +3,7 @@ require 'simplecov'
 require 'factory_girl'
 require 'fileutils'
 SimpleCov.start do
-  add_group 'App', './lib/renuo/bin-check/app'
+  add_group 'App', './lib/renuo/bin-check/first-class'
 end
 SimpleCov.minimum_coverage 100
 
