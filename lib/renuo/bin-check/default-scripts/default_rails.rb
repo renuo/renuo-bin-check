@@ -1,5 +1,9 @@
 module RenuoBinCheck
   module DefaultScripts
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/MethodLength
+    # :reek:DuplicateMethodCall
+    # :reek:TooManyStatements
     def rails
       bin_check = RenuoBinCheck::Initializer.new
 
@@ -10,7 +14,8 @@ module RenuoBinCheck
       end
 
       bin_check.check do |config|
-        config.command "grep --exclude-dir='app/assets/typings/**' -i -r 'TODO' app spec config db Rakefile README.md Gemfile"
+        config.command "grep --exclude-dir='app/assets/typings/**' -i -r 'TODO' app spec config db Rakefile README.md"\
+        ' Gemfile'
         config.reversed_exit true
         config.files ['app/**/*', 'spec/**/*', 'config/**/*', 'db/**/*', 'Rakefile', 'README.md', 'Gemfile']
       end
@@ -96,8 +101,9 @@ module RenuoBinCheck
 
       bin_check.run
     end
+    # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/MethodLength
 
     module_function :rails
   end
 end
-

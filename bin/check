@@ -9,38 +9,37 @@ if [ $? -eq 0 ]; then
   exit 1
 fi
 
-grep -i -r 'TODO' lib spec Gemfile
+grep --exclude-dir="lib/renuo/bin-check/default-scripts" -i -r 'TODO' lib spec Gemfile
 if [ $? -eq 0 ]; then
   echo 'TODOs found. Please fix them and try again, commit aborted'
   exit 1
 fi
 
-
-grep -i -r 'console.log' lib spec
+grep --exclude-dir="lib/renuo/bin-check/default-scripts" -i -r 'console.log' lib spec
 if [ $? -eq 0 ]; then
   echo 'console.log found. Please fix them and try again, commit aborted'
   exit 1
 fi
 
-grep -i -r '  puts ' lib spec
+grep --exclude-dir="lib/renuo/bin-check/default-scripts" -i -r '  puts ' lib spec
 if [ $? -eq 0 ]; then
   echo 'puts found. Please fix them and try again, commit aborted'
   exit 1
 fi
 
-grep -i -r '  puts(' lib spec
+grep --exclude-dir="lib/renuo/bin-check/default-scripts" -i -r '  puts(' lib spec
 if [ $? -eq 0 ]; then
   echo 'puts found. Please fix them and try again, commit aborted'
   exit 1
 fi
 
-grep -i -r '  p ' lib spec
+grep --exclude-dir="lib/renuo/bin-check/default-scripts" -i -r '  p ' lib spec
 if [ $? -eq 0 ]; then
   echo 'p found. Please fix them and try again, commit aborted'
   exit 1
 fi
 
-grep -i -r '  p(' lib spec
+grep --exclude-dir="lib/renuo/bin-check/default-scripts" -i -r '  p(' lib spec
 if [ $? -eq 0 ]; then
   echo 'p found. Please fix them and try again, commit aborted'
   exit 1
