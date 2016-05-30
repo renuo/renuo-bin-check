@@ -14,4 +14,12 @@ RSpec.describe RenuoBinCheck::Printer do
   it 'prints the given error-output' do
     expect { printer.print_error_output(result) }.to output("I failed\nThis is the second line\n").to_stderr
   end
+
+  context 'empty output' do
+    let(:result) { build(:failed_result, error_output: '') }
+
+    it 'prints output if no error-output is available' do
+      expect {printer.print_error_output(result)}.to output("I passed\nThis is the second line\n").to_stderr
+    end
+  end
 end
