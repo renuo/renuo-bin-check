@@ -26,7 +26,12 @@ RSpec.describe RenuoBinCheck::ScriptConfig do
 
   it 'sets output' do
     script.output('the set up script passed')
-    expect(script.script_output). to eq('the set up script passed')
+    expect(script.script_output).to eq('the set up script passed')
+  end
+
+  it 'sets error-output' do
+    script.error_output('the set up script failed')
+    expect(script.script_error_output).to eq('the set up script failed')
   end
 
   context 'params not set' do
