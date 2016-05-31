@@ -28,7 +28,21 @@ RSpec.describe RenuoBinCheck::Initializer do
         rescue SystemExit => se
           expect(se.status).to eq(0)
         end
-      end.to output.to_stdout
+      end.to output("hello\n").to_stdout
+    end
+
+    it 'returns exit-code 0 and expected overridden output' do
+      bin_check.check do |config|
+        config.command 'echo hello'
+        config.output 'I passed :)'
+      end
+      expect do
+        begin
+          bin_check.run
+        rescue SystemExit => se
+          expect(se.status).to eq(0)
+        end
+      end.to output("I passed :)\n").to_stdout
     end
 
     it 'returns exit-code 1 and expected error-output' do
@@ -55,6 +69,20 @@ RSpec.describe RenuoBinCheck::Initializer do
           expect(se.status).to eq(1)
         end
       end.to output("I failed\nThis is the second line\n").to_stderr
+    end
+
+    it 'returns exit-code 1 and expected overridden error-output' do
+      bin_check.check do |config|
+        config.command './spec/spec-files/test_script_exit1'
+        config.error_output 'it failed...'
+      end
+      expect do
+        begin
+          bin_check.run
+        rescue SystemExit => se
+          expect(se.status).to eq(1)
+        end
+      end.to output("it failed...\n").to_stderr
     end
 
     it 'runns scripts parallel' do
