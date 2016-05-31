@@ -24,6 +24,11 @@ RSpec.describe RenuoBinCheck::ScriptConfig do
     expect(script.reversed_exit?).to be_truthy
   end
 
+  it 'sets output' do
+    script.output('the set up script passed')
+    expect(script.script_output). to eq('the set up script passed')
+  end
+
   context 'params not set' do
     it 'returns name that is hashed script_command' do
       script = RenuoBinCheck::ScriptConfig.new
