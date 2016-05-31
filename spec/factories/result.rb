@@ -12,6 +12,11 @@ FactoryGirl.define do
       exit_code 1
     end
 
+    factory :overridden_output_result do
+      output 'overridden output'
+      error_output 'overridden error_output'
+    end
+
     factory :failed_result do
       exit_code 1
     end

@@ -68,4 +68,17 @@ RSpec.describe RenuoBinCheck::ServantThread do
       expect(servant.run).to have_attributes(result_attributes)
     end
   end
+
+  context 'overridden output and error_output' do
+    let(:script) { build :with_overridden_output_script }
+    let(:servant) { RenuoBinCheck::ServantThread.new(script) }
+
+    let(:result_attributes) { attributes_for :overridden_output_result }
+
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check') }
+
+    it 'uses overridden output' do
+      expect(servant.run).to have_attributes(result_attributes)
+    end
+  end
 end

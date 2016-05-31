@@ -22,7 +22,14 @@ module RenuoBinCheck
     def run_command
       output, error_output, process = Open3.capture3(@script_config.script_command)
       @result = Result.new(output, error_output, process.exitstatus)
+      override_output
       @script_config.reversed_exit? ? reverse_result : @result
+    end
+
+    def override_output
+      output = @script_config.script_output ||= @result.output
+      error_output = @script_config.script_error_output ||= @result.error_output
+      @result = Result.new(output, error_output, @result.exit_code)
     end
 
     def reverse_result

@@ -18,6 +18,11 @@ FactoryGirl.define do
         script_files nil
       end
 
+      factory :with_overridden_output_script do
+        script_output 'overridden output'
+        script_error_output 'overridden error_output'
+      end
+
       factory :reversed_exit_script do
         script_reversed_exit true
       end
