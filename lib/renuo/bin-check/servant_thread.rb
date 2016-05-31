@@ -29,7 +29,8 @@ module RenuoBinCheck
     def override_output
       output = @script_config.script_output ||= @result.output
       error_output = @script_config.script_error_output ||= @result.error_output
-      @result = Result.new(output, error_output, @result.exit_code)
+      @result = Result.new(output + @script_config.appended_output, error_output + @script_config.appended_error_output,
+                           @result.exit_code)
     end
 
     def reverse_result

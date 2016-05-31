@@ -23,6 +23,11 @@ FactoryGirl.define do
         script_error_output 'overridden error_output'
       end
 
+      factory :with_appended_output_script do
+        appended_output 'overridden output'
+        appended_error_output 'overridden error_output'
+      end
+
       factory :reversed_exit_script do
         script_reversed_exit true
       end

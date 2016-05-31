@@ -37,12 +37,12 @@ RSpec.describe RenuoBinCheck::ScriptConfig do
   context 'append-mode' do
     it 'sets output' do
       script.output('+the set up script passed')
-      expect(script.appended_output).to eq("\nthe set up script passed")
+      expect(script.appended_output).to eq('the set up script passed')
     end
 
     it 'sets error-output' do
       script.error_output('+the set up script failed')
-      expect(script.appended_error_output).to eq("\nthe set up script failed")
+      expect(script.appended_error_output).to eq('the set up script failed')
     end
   end
 

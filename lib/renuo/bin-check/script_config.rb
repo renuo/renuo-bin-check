@@ -17,11 +17,11 @@ module RenuoBinCheck
     end
 
     def output(output)
-      output[0] == '+' ? @appended_output = output.sub('+', "\n") : @script_output = output
+      output[0] == '+' ? @appended_output = output.sub('+', '') : @script_output = output
     end
 
-    def error_output(err_output)
-      err_output[0] == '+' ? @appended_error_output = err_output.sub('+', "\n") : @script_error_output = err_output
+    def error_output(error_output)
+      error_output[0] == '+' ? @appended_error_output = error_output.sub('+', '') : @script_error_output = error_output
     end
 
     def reversed_exit(reversed_exit)
@@ -34,6 +34,14 @@ module RenuoBinCheck
 
     def reversed_exit?
       @script_reversed_exit
+    end
+
+    def appended_output
+      @appended_output ||= ''
+    end
+
+    def appended_error_output
+      @appended_error_output ||= ''
     end
 
     def script_command

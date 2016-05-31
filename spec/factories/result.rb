@@ -17,6 +17,11 @@ FactoryGirl.define do
       error_output 'overridden error_output'
     end
 
+    factory :appended_output_result do
+      output "I passed\nThis is the second line\noverridden output"
+      error_output "I failed\nThis is the second line\noverridden error_output"
+    end
+
     factory :failed_result do
       exit_code 1
     end
