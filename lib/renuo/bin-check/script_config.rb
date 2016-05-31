@@ -1,4 +1,5 @@
 module RenuoBinCheck
+  # :reek:TooManyInstanceVariables:
   class ScriptConfig
     attr_accessor :script_command, :script_files, :script_name, :script_reversed_exit, :script_output,
                   :script_error_output
