@@ -1,8 +1,8 @@
 module RenuoBinCheck
   # :reek:TooManyInstanceVariables:
   class ScriptConfig
-    attr_accessor :script_command, :script_files, :script_name, :script_reversed_exit, :script_output,
-                  :script_error_output
+    attr_accessor :script_command, :script_files, :script_name, :script_reversed_exit, :script_standard_output,
+                  :script_error_output, :appended_standard_output, :appended_error_output
 
     def command(command)
       @script_command = command
@@ -16,12 +16,20 @@ module RenuoBinCheck
       @script_name = name
     end
 
-    def output(output)
-      @script_output = output
+    def success_message(standard_output)
+      if standard_output[0] == '+'
+        @appended_standard_output = standard_output.sub('+', '')
+      else
+        @script_standard_output = standard_output
+      end
     end
 
-    def error_output(error_output)
-      @script_error_output = error_output
+    def error_message(error_output)
+      if error_output[0] == '+'
+        @appended_error_output = error_output.sub('+', '')
+      else
+        @script_error_output = error_output
+      end
     end
 
     def reversed_exit(reversed_exit)
@@ -34,6 +42,14 @@ module RenuoBinCheck
 
     def reversed_exit?
       @script_reversed_exit
+    end
+
+    def appended_standard_output
+      @appended_standard_output ||= ''
+    end
+
+    def appended_error_output
+      @appended_error_output ||= ''
     end
 
     def script_command

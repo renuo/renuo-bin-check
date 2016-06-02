@@ -35,7 +35,7 @@ module RenuoBinCheck
     end
 
     def exit_with_success
-      @printer.print_output(@results)
+      @printer.print_standard_output(@results)
       exit 0
     end
   end

@@ -4,8 +4,8 @@ require './lib/renuo/bin-check/result'
 RSpec.describe RenuoBinCheck::Result do
   let(:result) { RenuoBinCheck::Result.new('heyaa', 'noooo', 0) }
 
-  it 'initializes output with given output' do
-    expect(result.output).to eq('heyaa')
+  it 'initializes standard_output with given standard_output' do
+    expect(result.standard_output).to eq('heyaa')
   end
 
   it 'initializes error_output with given error_output' do

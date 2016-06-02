@@ -34,7 +34,7 @@ RSpec.describe RenuoBinCheck::Initializer do
     it 'returns exit-code 0 and expected overridden output' do
       bin_check.check do |config|
         config.command 'echo hello'
-        config.output 'I passed :)'
+        config.success_message 'I passed :)'
       end
       expect do
         begin
@@ -43,6 +43,20 @@ RSpec.describe RenuoBinCheck::Initializer do
           expect(se.status).to eq(0)
         end
       end.to output("I passed :)\n").to_stdout
+    end
+
+    it 'returns exit-code 0 and expected appended output' do
+      bin_check.check do |config|
+        config.command 'echo hello'
+        config.success_message '+I passed :)'
+      end
+      expect do
+        begin
+          bin_check.run
+        rescue SystemExit => se
+          expect(se.status).to eq(0)
+        end
+      end.to output("hello\nI passed :)\n").to_stdout
     end
 
     it 'returns exit-code 1 and expected error-output' do
@@ -74,7 +88,7 @@ RSpec.describe RenuoBinCheck::Initializer do
     it 'returns exit-code 1 and expected overridden error-output' do
       bin_check.check do |config|
         config.command './spec/spec-files/test_script_exit1'
-        config.error_output 'it failed...'
+        config.error_message 'it failed...'
       end
       expect do
         begin
@@ -83,6 +97,20 @@ RSpec.describe RenuoBinCheck::Initializer do
           expect(se.status).to eq(1)
         end
       end.to output("it failed...\n").to_stderr
+    end
+
+    it 'returns exit-code 1 and expected appended error-output' do
+      bin_check.check do |config|
+        config.command './spec/spec-files/test_script_exit1'
+        config.error_message '+it failed...'
+      end
+      expect do
+        begin
+          bin_check.run
+        rescue SystemExit => se
+          expect(se.status).to eq(1)
+        end
+      end.to output("I failed\nThis is the second line\nit failed...\n").to_stderr
     end
 
     it 'runns scripts parallel' do
@@ -102,7 +130,7 @@ RSpec.describe RenuoBinCheck::Initializer do
   context 'cached script' do
     before(:each) do
       FileUtils.mkdir_p 'tmp/bin-check/exit0/df57ab93c06ded11a01f2de950307019'
-      File.write 'tmp/bin-check/exit0/df57ab93c06ded11a01f2de950307019/output',
+      File.write 'tmp/bin-check/exit0/df57ab93c06ded11a01f2de950307019/standard_output',
                  "I'm cached\npassed\n"
       File.write 'tmp/bin-check/exit0/df57ab93c06ded11a01f2de950307019/error_output',
                  "I'm cached\npassed\n"
@@ -146,7 +174,7 @@ RSpec.describe RenuoBinCheck::Initializer do
 
       expect(File.read('./tmp/bin-check/exit0/df57ab93c06ded11a01f2de950307019/error_output'))
         .to eq("I failed\nThis is the second line\n")
-      expect(File.read('./tmp/bin-check/exit0/df57ab93c06ded11a01f2de950307019/output'))
+      expect(File.read('./tmp/bin-check/exit0/df57ab93c06ded11a01f2de950307019/standard_output'))
         .to eq("I passed\nThis is the second line\n")
       expect(File.read('./tmp/bin-check/exit0/df57ab93c06ded11a01f2de950307019/exit_code').to_i).to eq(0)
     end
@@ -171,7 +199,8 @@ RSpec.describe RenuoBinCheck::Initializer do
       expect(File.read('./tmp/bin-check/65a98809d7447e9857b9acf1fbc89dcc/'\
                         'df57ab93c06ded11a01f2de950307019/error_output'))
         .to eq("I failed\nThis is the second line\n")
-      expect(File.read('./tmp/bin-check/65a98809d7447e9857b9acf1fbc89dcc/df57ab93c06ded11a01f2de950307019/output'))
+      expect(File.read('./tmp/bin-check/65a98809d7447e9857b9acf1fbc89dcc/'\
+                        'df57ab93c06ded11a01f2de950307019/standard_output'))
         .to eq("I passed\nThis is the second line\n")
       expect(File.read('./tmp/bin-check/65a98809d7447e9857b9acf1fbc89dcc/df57ab93c06ded11a01f2de950307019/exit_code')
                .to_i).to eq(0)

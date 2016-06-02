@@ -6,8 +6,8 @@ RSpec.describe RenuoBinCheck::Printer do
   let(:result) { build(:failed_result) }
   let(:results) { [build(:result), build(:result)] }
 
-  it 'prints the given output' do
-    expect { printer.print_output(results) }.to output("I passed\nThis is the second line\n" \
+  it 'prints the given standard_output' do
+    expect { printer.print_standard_output(results) }.to output("I passed\nThis is the second line\n" \
                                                         "I passed\nThis is the second line\n").to_stdout
   end
 
@@ -18,7 +18,7 @@ RSpec.describe RenuoBinCheck::Printer do
   context 'empty output' do
     let(:result) { build(:failed_result, error_output: '') }
 
-    it 'prints output if no error-output is available' do
+    it 'prints standard_output if no error-output is available' do
       expect { printer.print_error_output(result) }.to output("I passed\nThis is the second line\n").to_stderr
     end
   end
