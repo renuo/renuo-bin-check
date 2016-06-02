@@ -25,7 +25,11 @@ module RenuoBinCheck
     end
 
     def error_message(error_output)
-      error_output[0] == '+' ? @appended_error_output = error_output.sub('+', '') : @script_error_output = error_output
+      if error_output[0] == '+'
+        @appended_error_output = error_output.sub('+', '')
+      else
+        @script_error_output = error_output
+      end
     end
 
     def reversed_exit(reversed_exit)
