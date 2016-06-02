@@ -130,7 +130,7 @@ RSpec.describe RenuoBinCheck::Initializer do
   context 'cached script' do
     before(:each) do
       FileUtils.mkdir_p 'tmp/bin-check/exit0/df57ab93c06ded11a01f2de950307019'
-      File.write 'tmp/bin-check/exit0/df57ab93c06ded11a01f2de950307019/output',
+      File.write 'tmp/bin-check/exit0/df57ab93c06ded11a01f2de950307019/standard_output',
                  "I'm cached\npassed\n"
       File.write 'tmp/bin-check/exit0/df57ab93c06ded11a01f2de950307019/error_output',
                  "I'm cached\npassed\n"
@@ -174,7 +174,7 @@ RSpec.describe RenuoBinCheck::Initializer do
 
       expect(File.read('./tmp/bin-check/exit0/df57ab93c06ded11a01f2de950307019/error_output'))
         .to eq("I failed\nThis is the second line\n")
-      expect(File.read('./tmp/bin-check/exit0/df57ab93c06ded11a01f2de950307019/output'))
+      expect(File.read('./tmp/bin-check/exit0/df57ab93c06ded11a01f2de950307019/standard_output'))
         .to eq("I passed\nThis is the second line\n")
       expect(File.read('./tmp/bin-check/exit0/df57ab93c06ded11a01f2de950307019/exit_code').to_i).to eq(0)
     end
@@ -199,7 +199,8 @@ RSpec.describe RenuoBinCheck::Initializer do
       expect(File.read('./tmp/bin-check/65a98809d7447e9857b9acf1fbc89dcc/'\
                         'df57ab93c06ded11a01f2de950307019/error_output'))
         .to eq("I failed\nThis is the second line\n")
-      expect(File.read('./tmp/bin-check/65a98809d7447e9857b9acf1fbc89dcc/df57ab93c06ded11a01f2de950307019/output'))
+      expect(File.read('./tmp/bin-check/65a98809d7447e9857b9acf1fbc89dcc/'\
+                        'df57ab93c06ded11a01f2de950307019/standard_output'))
         .to eq("I passed\nThis is the second line\n")
       expect(File.read('./tmp/bin-check/65a98809d7447e9857b9acf1fbc89dcc/df57ab93c06ded11a01f2de950307019/exit_code')
                .to_i).to eq(0)

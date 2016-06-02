@@ -55,7 +55,7 @@ RSpec.describe RenuoBinCheck::ServantThread do
 
     before(:each) do
       FileUtils.mkdir_p 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019'
-      File.write 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/output',
+      File.write 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/standard_output',
                  "I passed\nThis is the second line\n"
       File.write 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/error_output',
                  "I failed\nThis is the second line\n"
@@ -69,7 +69,7 @@ RSpec.describe RenuoBinCheck::ServantThread do
     end
   end
 
-  context 'overridden output and error_output' do
+  context 'overridden standard_output and error_output' do
     let(:script) { build :with_overridden_output_script }
     let(:servant) { RenuoBinCheck::ServantThread.new(script) }
 
@@ -82,7 +82,7 @@ RSpec.describe RenuoBinCheck::ServantThread do
     end
   end
 
-  context 'appended output and error_output' do
+  context 'appended standard_output and error_output' do
     let(:script) { build :with_appended_output_script }
     let(:servant) { RenuoBinCheck::ServantThread.new(script) }
 

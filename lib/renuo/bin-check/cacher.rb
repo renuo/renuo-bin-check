@@ -19,7 +19,7 @@ module RenuoBinCheck
 
     def cache(result)
       FileUtils.mkdir_p "tmp/bin-check/#{@name}/#{@hash}"
-      File.write "tmp/bin-check/#{@name}/#{@hash}/output", result.output
+      File.write "tmp/bin-check/#{@name}/#{@hash}/standard_output", result.standard_output
       File.write "tmp/bin-check/#{@name}/#{@hash}/error_output", result.error_output
       File.write "tmp/bin-check/#{@name}/#{@hash}/exit_code", result.exit_code
     end
@@ -27,10 +27,10 @@ module RenuoBinCheck
     private
 
     def read
-      output = File.read("tmp/bin-check/#{@name}/#{@hash}/output")
+      standard_output = File.read("tmp/bin-check/#{@name}/#{@hash}/standard_output")
       error_output = File.read("tmp/bin-check/#{@name}/#{@hash}/error_output")
       exit_code = File.read("tmp/bin-check/#{@name}/#{@hash}/exit_code").to_i
-      Result.new(output, error_output, exit_code)
+      Result.new(standard_output, error_output, exit_code)
     end
 
     def hash_files

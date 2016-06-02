@@ -9,7 +9,7 @@ RSpec.describe RenuoBinCheck::Cacher do
   context 'results are cashed' do
     before(:each) do
       FileUtils.mkdir_p 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019'
-      File.write 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/output',
+      File.write 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/standard_output',
                  "I passed\nThis is the second line\n"
       File.write 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/error_output',
                  "I failed\nThis is the second line\n"
@@ -42,8 +42,8 @@ RSpec.describe RenuoBinCheck::Cacher do
       cacher.cache(result)
       expect(File.read('./tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/error_output'))
         .to eq(result.error_output)
-      expect(File.read('./tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/output'))
-        .to eq(result.output)
+      expect(File.read('./tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/standard_output'))
+        .to eq(result.standard_output)
       expect(File.read('./tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/exit_code').to_i)
         .to eq(result.exit_code)
     end

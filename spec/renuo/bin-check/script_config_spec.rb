@@ -24,9 +24,9 @@ RSpec.describe RenuoBinCheck::ScriptConfig do
     expect(script.reversed_exit?).to be_truthy
   end
 
-  it 'sets output' do
+  it 'sets standard_output' do
     script.success_message('the set up script passed')
-    expect(script.script_output).to eq('the set up script passed')
+    expect(script.script_standard_output).to eq('the set up script passed')
   end
 
   it 'sets error-output' do
@@ -35,9 +35,9 @@ RSpec.describe RenuoBinCheck::ScriptConfig do
   end
 
   context 'append-mode' do
-    it 'sets output' do
+    it 'sets standard_output' do
       script.success_message('+the set up script passed')
-      expect(script.appended_output).to eq('the set up script passed')
+      expect(script.appended_standard_output).to eq('the set up script passed')
     end
 
     it 'sets error-output' do
