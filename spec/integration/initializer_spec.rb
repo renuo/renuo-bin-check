@@ -34,7 +34,7 @@ RSpec.describe RenuoBinCheck::Initializer do
     it 'returns exit-code 0 and expected overridden output' do
       bin_check.check do |config|
         config.command 'echo hello'
-        config.output 'I passed :)'
+        config.success_message 'I passed :)'
       end
       expect do
         begin
@@ -48,7 +48,7 @@ RSpec.describe RenuoBinCheck::Initializer do
     it 'returns exit-code 0 and expected appended output' do
       bin_check.check do |config|
         config.command 'echo hello'
-        config.output '+I passed :)'
+        config.success_message '+I passed :)'
       end
       expect do
         begin
@@ -88,7 +88,7 @@ RSpec.describe RenuoBinCheck::Initializer do
     it 'returns exit-code 1 and expected overridden error-output' do
       bin_check.check do |config|
         config.command './spec/spec-files/test_script_exit1'
-        config.error_output 'it failed...'
+        config.error_message 'it failed...'
       end
       expect do
         begin
@@ -102,7 +102,7 @@ RSpec.describe RenuoBinCheck::Initializer do
     it 'returns exit-code 1 and expected appended error-output' do
       bin_check.check do |config|
         config.command './spec/spec-files/test_script_exit1'
-        config.error_output '+it failed...'
+        config.error_message '+it failed...'
       end
       expect do
         begin

@@ -16,11 +16,11 @@ module RenuoBinCheck
       @script_name = name
     end
 
-    def output(output)
+    def success_message(output)
       output[0] == '+' ? @appended_output = output.sub('+', '') : @script_output = output
     end
 
-    def error_output(error_output)
+    def error_message(error_output)
       error_output[0] == '+' ? @appended_error_output = error_output.sub('+', '') : @script_error_output = error_output
     end
 
