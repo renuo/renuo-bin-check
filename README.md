@@ -80,6 +80,20 @@ which influence the outcome of the configured script.
 
 Even though this option is optional, it is recommended to set it, as it can make a run much faster.
 
+#### success_message
+
+This option is optional. You can use it to override the standard output of a script or to append a further output.
+
+If you want to override it just write the message, that you want to be shown. If you want to append a message, start
+your message with a ```+```.
+
+#### error_message
+
+This option is optional. You can use it to override the error output of a script or to append a further output.
+
+If you want to override it just write the message, that you want to be shown. If you want to append a message, start
+your message with a ```+```.
+
 #### reversed_exit
 
 This option is optional. You can set it truthy or falsey. if not set it's automatically set falsey.
@@ -104,6 +118,8 @@ bin_check.check do |config|
                   "app spec config db Rakefile README.md Gemfile"
   config.name "todo-grepper"
   config.files ['app/**/*', 'spec/**/*', 'config/**/*', 'db/**/*', 'Rakefile', 'README.md', 'Gemfile']
+  config.success_message "No TODO was found :)"
+  config.error_message "+TODO found! Please get rid of them"
   config.reversed_exit true
 end
 ```
