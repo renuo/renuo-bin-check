@@ -22,4 +22,5 @@ AllCops:
     - 'bin/**/*'
     - 'log/**/*'
     - 'tmp/**/*'
+    - 'vendor/bundle/**/*'
     - 'lib/renuo-bin-check.rb'
