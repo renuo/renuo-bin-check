@@ -21,7 +21,7 @@ Run automated tests only with: `rspec`
 
 Run Lining only: `rubocop`
 
-Run Code Smell detector only: `reek``
+Run Code Smell detector only: `reek`
 
 ## How To Use renuo-bin-check
 
