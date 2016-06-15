@@ -1,4 +1,4 @@
-require './lib/renuo/bin-check/script_config'
+require './lib/renuo_bin_check/script_config'
 FactoryGirl.define do
   factory :script, class: RenuoBinCheck::ScriptConfig do
     script_command 'cool command'
@@ -16,6 +16,16 @@ FactoryGirl.define do
 
       factory :without_files_script do
         script_files nil
+      end
+
+      factory :with_overridden_output_script do
+        script_standard_output 'overridden standard_output'
+        script_error_output 'overridden error_output'
+      end
+
+      factory :with_appended_output_script do
+        appended_standard_output 'overridden standard_output'
+        appended_error_output 'overridden error_output'
       end
 
       factory :reversed_exit_script do

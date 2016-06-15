@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/renuo/bin-check/master_thread'
+require './lib/renuo_bin_check/master_thread'
 
 RSpec.describe RenuoBinCheck::MasterThread do
   let(:script) { build :script }
@@ -35,7 +35,7 @@ RSpec.describe RenuoBinCheck::MasterThread do
     it 'exits with exit code 0' do
       master.add_thread(build(:passing_script))
       master.add_thread(build(:passing_script))
-      expect(master.printer).to receive(:print_output)
+      expect(master.printer).to receive(:print_standard_output)
       begin
         master.finalize
       rescue SystemExit => se

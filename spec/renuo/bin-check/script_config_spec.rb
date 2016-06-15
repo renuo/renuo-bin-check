@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/renuo/bin-check/script_config'
+require './lib/renuo_bin_check/script_config'
 
 RSpec.describe RenuoBinCheck::ScriptConfig do
   let(:script) { RenuoBinCheck::ScriptConfig.new }
@@ -22,6 +22,28 @@ RSpec.describe RenuoBinCheck::ScriptConfig do
   it 'sets reversed_exit' do
     script.reversed_exit(true)
     expect(script.reversed_exit?).to be_truthy
+  end
+
+  it 'sets standard_output' do
+    script.success_message('the set up script passed')
+    expect(script.script_standard_output).to eq('the set up script passed')
+  end
+
+  it 'sets error-output' do
+    script.error_message('the set up script failed')
+    expect(script.script_error_output).to eq('the set up script failed')
+  end
+
+  context 'append-mode' do
+    it 'sets standard_output' do
+      script.success_message('+the set up script passed')
+      expect(script.appended_standard_output).to eq('the set up script passed')
+    end
+
+    it 'sets error-output' do
+      script.error_message('+the set up script failed')
+      expect(script.appended_error_output).to eq('the set up script failed')
+    end
   end
 
   context 'params not set' do

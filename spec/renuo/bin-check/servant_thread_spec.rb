@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/renuo/bin-check/servant_thread'
+require './lib/renuo_bin_check/servant_thread'
 
 RSpec.describe RenuoBinCheck::ServantThread do
   let(:cacher) { build :not_found_cacher }
@@ -55,7 +55,7 @@ RSpec.describe RenuoBinCheck::ServantThread do
 
     before(:each) do
       FileUtils.mkdir_p 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019'
-      File.write 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/output',
+      File.write 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/standard_output',
                  "I passed\nThis is the second line\n"
       File.write 'tmp/bin-check/script_name/df57ab93c06ded11a01f2de950307019/error_output',
                  "I failed\nThis is the second line\n"
@@ -65,6 +65,32 @@ RSpec.describe RenuoBinCheck::ServantThread do
     after(:each) { FileUtils.remove_dir('./tmp/bin-check') }
 
     it 'gets result from cache' do
+      expect(servant.run).to have_attributes(result_attributes)
+    end
+  end
+
+  context 'overridden standard_output and error_output' do
+    let(:script) { build :with_overridden_output_script }
+    let(:servant) { RenuoBinCheck::ServantThread.new(script) }
+
+    let(:result_attributes) { attributes_for :overridden_output_result }
+
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check') }
+
+    it 'uses overridden output' do
+      expect(servant.run).to have_attributes(result_attributes)
+    end
+  end
+
+  context 'appended standard_output and error_output' do
+    let(:script) { build :with_appended_output_script }
+    let(:servant) { RenuoBinCheck::ServantThread.new(script) }
+
+    let(:result_attributes) { attributes_for :appended_output_result }
+
+    after(:each) { FileUtils.remove_dir('./tmp/bin-check') }
+
+    it 'uses overridden output' do
       expect(servant.run).to have_attributes(result_attributes)
     end
   end
