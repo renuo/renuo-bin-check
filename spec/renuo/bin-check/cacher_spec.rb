@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/renuo/bin-check/cacher'
+require './lib/renuo_bin_check/cacher'
 
 RSpec.describe RenuoBinCheck::Cacher do
   let(:result_attributes) { attributes_for(:result) }

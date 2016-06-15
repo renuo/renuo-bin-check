@@ -2,9 +2,8 @@ require_relative 'code_climate'
 require 'simplecov'
 require 'factory_girl'
 require 'fileutils'
-SimpleCov.start do
-  add_group 'App', './lib/renuo/bin-check/app'
-end
+
+SimpleCov.start
 SimpleCov.minimum_coverage 100
 
 RSpec.configure do |config|

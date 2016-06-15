@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/renuo/bin-check/master_thread'
+require './lib/renuo_bin_check/master_thread'
 
 RSpec.describe RenuoBinCheck::MasterThread do
   let(:script) { build :script }

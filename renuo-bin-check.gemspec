@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'renuo/bin-check/version'
+require 'renuo_bin_check/version'
 
 Gem::Specification.new do |spec|
   spec.name = 'renuo-bin-check'
-  spec.version = Renuo::BinCheck::VERSION
+  spec.version = RenuoBinCheck::VERSION
   spec.authors = ['Zora Fuchs']
   spec.email = ['zora.fuchs@renuo.ch']
 

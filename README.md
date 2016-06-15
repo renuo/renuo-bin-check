@@ -39,7 +39,7 @@ You can now configure your scripts like that:
 
 ```rb
 # Include all ruby files of renuo-bin-check
-Dir["<path-to-renuo-bin-check>/lib/renuo/bin-check/*.rb"].each { |file| require file }
+Dir["<path-to-renuo-bin-check>/lib/renuo_bin_check/*.rb"].each { |file| require file }
 
 # Initialize bin-check
 bin_check = RenuoBinCheck::Initializer.new

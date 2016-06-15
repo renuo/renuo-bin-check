@@ -1,4 +1,4 @@
-require './lib/renuo/bin-check/result'
+require './lib/renuo_bin_check/result'
 FactoryGirl.define do
   factory :result, class: RenuoBinCheck::Result do
     standard_output "I passed\nThis is the second line\n"

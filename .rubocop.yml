@@ -10,11 +10,6 @@ Style/Documentation:
 Style/NonNilCheck:
   IncludeSemanticChanges: true
 
-Style/FileName:
-  Exclude:
-  - 'Gemfile.local.rb'
-  - 'Gemfile.local.example.rb'
-
 Style/FrozenStringLiteralComment:
   Enabled: false
 
@@ -25,10 +20,6 @@ AllCops:
     - '**/config.ru'
   Exclude:
     - 'bin/**/*'
-    - 'script/**/*'
     - 'log/**/*'
-    - 'public/**/*'
     - 'tmp/**/*'
-    - 'config/unicorn.rb'
-    - 'db/**/*'
-    - 'vendor/bundle/**/*'
+    - 'lib/renuo-bin-check.rb'

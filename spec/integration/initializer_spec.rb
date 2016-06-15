@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/renuo/bin-check/initializer'
+require './lib/renuo_bin_check/initializer'
 
 RSpec.describe RenuoBinCheck::Initializer do
   let(:bin_check) { RenuoBinCheck::Initializer.new }

@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/renuo/bin-check/script_config'
+require './lib/renuo_bin_check/script_config'
 
 RSpec.describe RenuoBinCheck::ScriptConfig do
   let(:script) { RenuoBinCheck::ScriptConfig.new }

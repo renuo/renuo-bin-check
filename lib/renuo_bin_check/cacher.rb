@@ -1,5 +1,6 @@
 require 'digest'
 require 'fileutils'
+require 'renuo_bin_check/result'
 
 module RenuoBinCheck
   class Cacher

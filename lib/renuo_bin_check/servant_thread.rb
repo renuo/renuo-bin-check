@@ -1,4 +1,6 @@
 require 'open3'
+require 'renuo_bin_check/result'
+
 module RenuoBinCheck
   class ServantThread
     attr_reader :script_config
