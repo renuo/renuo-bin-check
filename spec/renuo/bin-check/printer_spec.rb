@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/renuo/bin-check/printer'
+require './lib/renuo_bin_check/printer'
 
 RSpec.describe RenuoBinCheck::Printer do
   let(:printer) { RenuoBinCheck::Printer.new }

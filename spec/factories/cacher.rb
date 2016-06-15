@@ -1,4 +1,4 @@
-require './lib/renuo/bin-check/result'
+require './lib/renuo_bin_check/result'
 FactoryGirl.define do
   factory :cacher, class: RenuoBinCheck::Cacher do
     command 'script_name'

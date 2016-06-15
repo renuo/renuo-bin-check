@@ -1,4 +1,4 @@
-require './lib/renuo/bin-check/script_config'
+require './lib/renuo_bin_check/script_config'
 FactoryGirl.define do
   factory :script, class: RenuoBinCheck::ScriptConfig do
     script_command 'cool command'

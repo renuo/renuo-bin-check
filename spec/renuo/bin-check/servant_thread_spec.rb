@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/renuo/bin-check/servant_thread'
+require './lib/renuo_bin_check/servant_thread'
 
 RSpec.describe RenuoBinCheck::ServantThread do
   let(:cacher) { build :not_found_cacher }

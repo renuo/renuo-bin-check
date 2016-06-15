@@ -44,8 +44,6 @@ Dir.chdir APP_ROOT do
     system 'bin/rake db:version >> /dev/null 2>&1 || bin/rake db:create:all && bin/rake db:setup'
   end
 
-  run('Creating local gemfile', 'Gemfile.local.rb') { system 'touch Gemfile.local.rb' }
-
   run 'Removing old logs and tempfiles' do
     system 'rm -f log/*'
     system 'rm -rf tmp/cache'

@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/renuo/bin-check/result'
+require './lib/renuo_bin_check/result'
 
 RSpec.describe RenuoBinCheck::Result do
   let(:result) { RenuoBinCheck::Result.new('heyaa', 'noooo', 0) }

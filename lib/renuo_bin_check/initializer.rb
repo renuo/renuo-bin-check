@@ -1,3 +1,5 @@
+require 'renuo_bin_check/printer'
+
 module RenuoBinCheck
   class Initializer
     attr_reader :master_thread
