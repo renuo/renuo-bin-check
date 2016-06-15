@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email = ['zora.fuchs@renuo.ch']
 
   spec.summary = 'renuo-bin-check automates running programms to check code quality of a ruby application.'
-  spec.description = 'With this gem you can automatically check your code quality (e.g. before every commit). You can configure it to run rubocop, reek, rspec and even custom scripts. For faster runtime it makes use of cashing and parallel execution.'
+  spec.description = 'With this gem you can automatically check your code quality (e.g. before every commit). You can configure it to run rubocop, reek, rspec and even custom scripts. For faster runtime it makes use of caching and parallel execution.'
   spec.homepage = 'https://github.com/renuo/renuo-bin-check'
   spec.license = 'MIT'
 
