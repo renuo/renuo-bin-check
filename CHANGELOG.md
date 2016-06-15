@@ -34,3 +34,8 @@ This was implemented as many Scripts use the Standard-Output for Outputs even if
 * Error-Output can be appended or overridden
 
 * Default-Script for faster Configuration of a bin/check in rails applications
+
+## Version 0.2.1
+
+* fixed typos
+* refined readme
