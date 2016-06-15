@@ -1,44 +1,23 @@
 [![Build Status](https://travis-ci.org/renuo/renuo-bin-check.svg?branch=master)](https://travis-ci.org/renuo/renuo-bin-check) [![Build Status](https://travis-ci.org/renuo/renuo-bin-check.svg?branch=develop)](https://travis-ci.org/renuo/renuo-bin-check)  [![Build Status](https://travis-ci.org/renuo/renuo-bin-check.svg?branch=testing)](https://travis-ci.org/renuo/renuo-bin-check) [![Code Climate](https://codeclimate.com/github/renuo/renuo-bin-check/badges/gpa.svg)](https://codeclimate.com/github/renuo/renuo-bin-check) [![Issue Count](https://codeclimate.com/github/renuo/renuo-bin-check/badges/issue_count.svg)](https://codeclimate.com/github/renuo/renuo-bin-check) [![Test Coverage](https://codeclimate.com/github/renuo/renuo-bin-check/badges/coverage.svg)](https://codeclimate.com/github/renuo/renuo-bin-check/coverage)
+
 # renuo-bin-check
 
-## Setup
-
-```
-git clone git@github.com:renuo/renuo-bin-check.git
-cd renuo-bin-check
-bin/setup
-```
-
-## Run Tests
-
-The following script will run rspec, rubocop, reek, scanner for debugging outputs and a scanner for TODOs
-
-```
-bin/check
-```
-
-Run automated tests only with: `rspec`
-
-Run Lining only: `rubocop`
-
-Run Code Smell detector only: `reek`
+With this gem you can automatically check your code quality (e.g. before every commit).
+You can configure it to run [*rubocop*][1], [*reek*](2), [*rspec*](3) and even custom scripts.
+For faster runtime it makes use of caching and parallel execution.
 
 ## How To Use renuo-bin-check
-
-Install renuo-bin-check locally: see Setup
 
 Add renuo-bin-check to your Gemfile:
 
 ```rb
-gem 'renuo-bin-check', path: '<path-to-renuo-bin-check>'
+gem 'renuo-bin-check'
 ```
 
-Create a file at any place you want. Usually it would be called bin/check though.
-
+Create a file at any place you want. Usually it would be called `bin/check though.
 You can now configure your scripts like that:
 
 ```rb
-# Initialize bin-check
 require 'renuo-bin-check'
 
 bin_check = RenuoBinCheck::Initializer.new
@@ -51,11 +30,25 @@ bin_check.check do |config|
   config.reversed_exit <true or false>
 end
 
-#run everything
+#run all scripts configured above
 bin_check.run
 ```
 
-### Options
+## Setup
+
+    git clone git@github.com:renuo/renuo-bin-check.git
+    cd renuo-bin-check
+    bin/setup
+
+
+## Run Tests
+
+The following script will run *rspec*, *rubocop*, *reek*, scanner for debugging outputs and a scanner for TODOs
+
+    bin/check
+
+
+### Options for Configuration
 
 #### command
 
@@ -129,14 +122,22 @@ If you would like to contribute, you're very welcome to.
 
 Please follow these instructions:
 
-https://github.com/renuo/renuo-bin-check/blob/develop/CONTRIBUTING.md
-
-https://github.com/renuo/renuo-bin-check/blob/develop/CODE_OF_CONDUCT.md
+* [Contributing][4]
+* [Code of Conduct][5]
 
 ## License
 
-Copyright (c) 2016 Renuo GmbH
+Copyright (c) 2016 [Renuo GmbH]
 
-MIT License
+[MIT License][6]
 
-Read more: https://github.com/renuo/renuo-bin-check/blob/develop/LICENSE
+
+[1]: https://github.com/bbatsov/rubocop
+[2]: https://github.com/troessner/reek
+[3]: https://github.com/rspec/rspec
+
+[4]: https://github.com/renuo/renuo-bin-check/blob/develop/CONTRIBUTING.md
+[5]: https://github.com/renuo/renuo-bin-check/blob/develop/CODE_OF_CONDUCT.md
+[6]: https://github.com/renuo/renuo-bin-check/blob/develop/LICENSE
+
+[Renuo GmbH]: https://www.renuo.ch
