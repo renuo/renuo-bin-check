@@ -38,10 +38,9 @@ Create a file at any place you want. Usually it would be called bin/check though
 You can now configure your scripts like that:
 
 ```rb
-# Include all ruby files of renuo-bin-check
-Dir["<path-to-renuo-bin-check>/lib/renuo_bin_check/*.rb"].each { |file| require file }
-
 # Initialize bin-check
+require 'renuo-bin-check'
+
 bin_check = RenuoBinCheck::Initializer.new
 
 # add a script, do this for as many scripts as you would like to run
