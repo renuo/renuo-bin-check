@@ -11,14 +11,16 @@ For faster runtime it makes use of caching and parallel execution.
 Add renuo-bin-check to your Gemfile:
 
 ```rb
-gem 'renuo-bin-check'
+gem 'renuo-bin-check', group: :bin_check
 ```
 
 Create a file at any place you want. Usually it would be called `bin/check though.
 You can now configure your scripts like that:
 
 ```rb
-require 'renuo-bin-check'
+
+require 'bundler/setup'
+Bundler.require(:bin_check)
 
 bin_check = RenuoBinCheck::Initializer.new
 
