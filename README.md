@@ -142,4 +142,4 @@ Copyright (c) 2016 [Renuo GmbH]
 [5]: https://github.com/renuo/renuo-bin-check/blob/develop/CODE_OF_CONDUCT.md
 [6]: https://github.com/renuo/renuo-bin-check/blob/develop/LICENSE
 
-[Renuo GmbH]: https://www.renuo.ch
+[Renuo AG]: https://www.renuo.ch
