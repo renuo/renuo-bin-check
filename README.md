@@ -129,7 +129,7 @@ Please follow these instructions:
 
 ## License
 
-Copyright (c) 2016 [Renuo GmbH]
+Copyright (c) 2016 [Renuo AG]
 
 [MIT License][6]
 
