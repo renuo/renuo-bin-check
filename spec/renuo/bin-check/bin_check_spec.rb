@@ -11,12 +11,17 @@ RSpec.describe BinCheck do
           reversed_exit false
         end
 
-        todo_finder do
+        t0d0_finder do
           files 'lib/**/*.*'
           command 'blubb-blubb'
           reversed_exit true
         end
       end
-    ).to eq(rubocop: {files: 'lib/**/*.rb', command: 'rubocop', reversed_exit: false}, todo_finder: {files: 'lib/**/*.*', command: 'blubb-blubb', reversed_exit: true})
+    ).to eq(rubocop: { files: 'lib/**/*.rb', command: 'rubocop', reversed_exit: false },
+            t0d0_finder: { files: 'lib/**/*.*', command: 'blubb-blubb', reversed_exit: true })
+  end
+
+  it 'calls super if no block is given' do
+    expect { BinCheck.blubb }.to raise_error(NoMethodError)
   end
 end

@@ -1,13 +1,23 @@
 class BinCheck
-  def self.method_missing(name, *params, &block)
-    @current_name = name
-    @new_script_hash[@current_name] = {}
-    instance_eval &block
+  def self.method_missing(name, *_params, &configs)
+    if block_given?
+      @current_name = name
+      @new_script_hash[@current_name] = {}
+      instance_eval(&configs)
+    else
+      super
+    end
   end
 
-  def self.run(&block)
+  def respond_to_missing?
+    #:nocov:
+    true
+    #:nocov:
+  end
+
+  def self.run(&check)
     @new_script_hash = {}
-    instance_eval &block
+    instance_eval(&check)
     @new_script_hash
   end
 
