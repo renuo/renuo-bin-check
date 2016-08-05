@@ -27,8 +27,8 @@ class BinCheck
     @new_script_hash.each do |name, configs|
       initializer.check do |config|
         config.name name
-        configs.each do |blubb, blibb|
-          config.send blubb, blibb
+        configs.each do |key, value|
+          config.send key, value
         end
       end
     end
