@@ -18,7 +18,21 @@ class BinCheck
   def self.run(&check)
     @new_script_hash = {}
     instance_eval(&check)
-    @new_script_hash
+    initialize_checks
+  end
+
+  #:reek:NestedIterators
+  def self.initialize_checks
+    initializer = RenuoBinCheck::Initializer.new
+    @new_script_hash.each do |name, configs|
+      initializer.check do |config|
+        config.name name
+        configs.each do |blubb, blibb|
+          config.send blubb, blibb
+        end
+      end
+    end
+    initializer.run
   end
 
   def self.files(files)
@@ -31,5 +45,17 @@ class BinCheck
 
   def self.reversed_exit(reversed_exit)
     @new_script_hash[@current_name][:reversed_exit] = reversed_exit
+  end
+
+  def self.error_message(error_message)
+    @new_script_hash[@current_name][:error_message] = error_message
+  end
+
+  def self.success_message(success_message)
+    @new_script_hash[@current_name][:success_message] = success_message
+  end
+
+  class << self
+    attr_reader :new_script_hash
   end
 end
