@@ -1,3 +1,4 @@
+require 'renuo_bin_check/bin_check'
 require 'renuo_bin_check/cacher'
 require 'renuo_bin_check/initializer'
 require 'renuo_bin_check/master_thread'
