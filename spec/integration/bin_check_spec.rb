@@ -119,6 +119,28 @@ RSpec.describe BinCheck do
       end.to output("I failed\nThis is the second line\nit failed...\n").to_stderr
     end
 
+    it 'uses the common configuration right' do
+      # success_option_1 =
+      # success_option_2 = "bye\ncommon configuration\nhello\ncommon configuration\n"
+      expect do
+        begin
+          BinCheck.run do
+            cute_scripts do
+              success_message '+common configuration'
+              hello_script do
+                command 'echo hello'
+              end
+              bye_script do
+                command 'sleep 1 && echo bye'
+              end
+            end
+          end
+        rescue SystemExit => se
+          expect(se.status).to eq(0)
+        end
+      end.to output("hello\ncommon configuration\nbye\ncommon configuration\n").to_stdout
+    end
+
     it 'runns scripts parallel' do
       start_time = Time.now
       begin

@@ -24,15 +24,19 @@ class BinCheck
   def self.initialize_checks
     @initializer = RenuoBinCheck::Initializer.new
     @configs.each do |config|
-      if config.has_children?
-        config.children.each do |child|
-          add_check(child.configs + child.parent.configs)
-        end
+      if config.children?
+        add_children(config)
       else
         add_check(config.configs)
       end
     end
     @initializer.run
+  end
+
+  def self.add_children(config)
+    config.children.each do |child|
+      add_check(child.parent.configs.merge(child.configs))
+    end
   end
 
   # :reek:NestedIterators initializer.check is not an iterator

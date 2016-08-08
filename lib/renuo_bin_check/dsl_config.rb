@@ -1,5 +1,5 @@
 class DSLConfig
-  attr_reader :configs, :children
+  attr_reader :configs, :children, :parent
   def initialize(name, parent = nil, &configs)
     @parent = parent
     @children = []
@@ -13,6 +13,12 @@ class DSLConfig
     else
       super
     end
+  end
+
+  def respond_to_missing?
+    #:nocov:
+    true
+    #:nocov:
   end
 
   def files(files)
@@ -35,7 +41,7 @@ class DSLConfig
     @configs[:success_message] = success_message
   end
 
-  def has_children?
+  def children?
     !@children.empty?
   end
 end
