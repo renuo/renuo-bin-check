@@ -1,10 +1,9 @@
 class DSLConfig
-
   attr_reader :configs, :children
   def initialize(name, parent = nil, &configs)
     @parent = parent
     @children = []
-    @configs = {name: name}
+    @configs = { name: name }
     instance_eval(&configs)
   end
 
@@ -34,5 +33,9 @@ class DSLConfig
 
   def success_message(success_message)
     @configs[:success_message] = success_message
+  end
+
+  def has_children?
+    !@children.empty?
   end
 end
