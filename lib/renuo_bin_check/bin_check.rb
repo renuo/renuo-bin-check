@@ -21,18 +21,22 @@ class BinCheck
     initialize_checks
   end
 
-  #:reek:NestedIterators
   def self.initialize_checks
-    initializer = RenuoBinCheck::Initializer.new
+    @initializer = RenuoBinCheck::Initializer.new
     @new_script_hash.each do |name, configs|
-      initializer.check do |config|
-        config.name name
-        configs.each do |key, value|
-          config.send key, value
-        end
+      add_check(name, configs)
+    end
+    @initializer.run
+  end
+
+  # :reek:NestedIterators initializer.check is not an iterator
+  def self.add_check(name, configs)
+    @initializer.check do |config|
+      config.name name
+      configs.each do |key, value|
+        config.send key, value
       end
     end
-    initializer.run
   end
 
   def self.files(files)
