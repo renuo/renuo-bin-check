@@ -20,9 +20,9 @@ RSpec.describe BinCheck do
     end
 
     expect(BinCheck.configs.first.configs)
-      .to eq({name: 'rubocop', files: 'lib/**/*.rb', command: 'rubocop', reversed_exit: false })
+      .to eq(name: 'rubocop', files: 'lib/**/*.rb', command: 'rubocop', reversed_exit: false)
     expect(BinCheck.configs[1].configs)
-             .to eq({ name: 't0d0_finder', files: 'lib/**/*.*', command: 'blubb-blubb', reversed_exit: true} )
+      .to eq(name: 't0d0_finder', files: 'lib/**/*.*', command: 'blubb-blubb', reversed_exit: true)
   end
 
   # it 'understands common configs' do
