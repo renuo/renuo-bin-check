@@ -1,9 +1,9 @@
+require 'renuo_bin_check/dsl_config'
+
 class BinCheck
   def self.method_missing(name, *_params, &configs)
     if block_given?
-      @current_name = name
-      @new_script_hash[@current_name] = {}
-      instance_eval(&configs)
+      @configs << DSLConfig.new(name.to_s, &configs)
     else
       super
     end
@@ -16,50 +16,39 @@ class BinCheck
   end
 
   def self.run(&check)
-    @new_script_hash = {}
+    @configs = []
     instance_eval(&check)
     initialize_checks
   end
 
   def self.initialize_checks
     @initializer = RenuoBinCheck::Initializer.new
-    @new_script_hash.each do |name, configs|
-      add_check(name, configs)
+    @configs.each do |config|
+      if config.children?
+        add_children(config)
+      else
+        add_check(config.configs)
+      end
     end
     @initializer.run
   end
 
+  def self.add_children(config)
+    config.children.each do |child|
+      add_check(child.parent.configs.merge(child.configs))
+    end
+  end
+
   # :reek:NestedIterators initializer.check is not an iterator
-  def self.add_check(name, configs)
+  def self.add_check(configs)
     @initializer.check do |config|
-      config.name name
       configs.each do |key, value|
         config.send key, value
       end
     end
   end
 
-  def self.files(files)
-    @new_script_hash[@current_name][:files] = files
-  end
-
-  def self.command(command)
-    @new_script_hash[@current_name][:command] = command
-  end
-
-  def self.reversed_exit(reversed_exit)
-    @new_script_hash[@current_name][:reversed_exit] = reversed_exit
-  end
-
-  def self.error_message(error_message)
-    @new_script_hash[@current_name][:error_message] = error_message
-  end
-
-  def self.success_message(success_message)
-    @new_script_hash[@current_name][:success_message] = success_message
-  end
-
   class << self
-    attr_reader :new_script_hash
+    attr_reader :configs
   end
 end
