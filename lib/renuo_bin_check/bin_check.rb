@@ -49,6 +49,10 @@ class BinCheck
     end
   end
 
+  def self.exclude(check_name)
+    @configs.delete_if { |config| config.configs[:name] == check_name.to_s }
+  end
+
   class << self
     attr_reader :configs
   end
