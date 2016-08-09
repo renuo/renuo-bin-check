@@ -5,6 +5,10 @@ class DefaultScripts
     @default_scripts = []
   end
 
+  def no_defaults
+    []
+  end
+
   def rails_defaults
     todo
     console_log
