@@ -1,5 +1,7 @@
 require 'renuo_bin_check/dsl_config'
 
+# rubocop:disable Metrics/ClassLength
+# :reek:TooManyMethods
 class DefaultScripts
   def initialize
     @default_scripts = []
@@ -9,6 +11,8 @@ class DefaultScripts
     []
   end
 
+  # rubocop:disable Metrics/MethodLength
+  # :reek:TooManyStatements
   def rails_defaults
     todo
     console_log
@@ -26,6 +30,7 @@ class DefaultScripts
     @default_scripts
   end
 
+  # :reek:TooManyStatements
   def rails_coffee_script_defaults
     todo
     console_log
@@ -42,6 +47,7 @@ class DefaultScripts
     rspec
     @default_scripts
   end
+  # rubocop:enable Metrics/MethodLength
 
   def todo
     @default_scripts << DSLConfig.new('todo') do
@@ -140,7 +146,8 @@ class DefaultScripts
   def brakeman
     @default_scripts << DSLConfig.new('brakeman') do
       command 'bundle exec brakeman -q -z --summary > /dev/null'
-      error_message '+Brakeman has detected one or more security vulnerabilities, please review them and re-commit your changes, commit aborted'
+      error_message '+Brakeman has detected one or more security vulnerabilities, please review them and re-commit ' \
+                    'your changes, commit aborted'
     end
   end
 
@@ -160,3 +167,4 @@ class DefaultScripts
     end
   end
 end
+# rubocop:enable Metrics/ClassLength

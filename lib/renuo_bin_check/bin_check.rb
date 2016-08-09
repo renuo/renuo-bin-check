@@ -1,5 +1,5 @@
 require 'renuo_bin_check/dsl_config'
-require 'renuo_bin_check/default_scripts'
+require 'renuo_bin_check/default_scripts/default_scripts'
 
 class BinCheck
   def self.method_missing(name, *_params, &configs)

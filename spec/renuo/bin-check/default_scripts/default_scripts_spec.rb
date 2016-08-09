@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/renuo_bin_check/default_scripts'
+require './lib/renuo_bin_check/default_scripts/default_scripts'
 
 RSpec.describe DefaultScripts do
   let(:default_scripts) { DefaultScripts.new }
@@ -48,8 +48,10 @@ RSpec.describe DefaultScripts do
     expect(default_scripts.todo.last.configs)
       .to eq(
         name: 'todo',
-        command: "grep --exclude-dir='app/assets/typings/**' -i -r 'TODO' app spec config db Rakefile README.md Gemfile",
-        reversed_exit: true, files: ['app/**/*', 'spec/**/*', 'config/**/*', 'db/**/*', 'Rakefile', 'README.md', 'Gemfile'],
+        command: "grep --exclude-dir='app/assets/typings/**' -i -r 'TODO' app spec config db Rakefile README.md" \
+          ' Gemfile',
+        reversed_exit: true,
+        files: ['app/**/*', 'spec/**/*', 'config/**/*', 'db/**/*', 'Rakefile', 'README.md', 'Gemfile'],
         success_message: '+TODOs found. Please fix them and try again, commit aborted'
       )
   end
@@ -164,7 +166,8 @@ RSpec.describe DefaultScripts do
       .to eq(
         name: 'brakeman',
         command: 'bundle exec brakeman -q -z --summary > /dev/null',
-        error_message: '+Brakeman has detected one or more security vulnerabilities, please review them and re-commit your changes, commit aborted'
+        error_message: '+Brakeman has detected one or more security vulnerabilities, please review them and re-commit' \
+          ' your changes, commit aborted'
       )
   end
 
