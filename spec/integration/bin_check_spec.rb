@@ -6,7 +6,7 @@ RSpec.describe BinCheck do
     it 'returns exit-code 0 and expected output' do
       expect do
         begin
-          BinCheck.run do
+          BinCheck.run :no_defaults do
             exit0_script do
               command './spec/spec-files/test_script_exit0'
             end
@@ -20,7 +20,7 @@ RSpec.describe BinCheck do
     it 'returns exit-code 0 and expected output' do
       expect do
         begin
-          BinCheck.run do
+          BinCheck.run :no_defaults do
             hello_script do
               command 'echo hello'
             end
@@ -34,7 +34,7 @@ RSpec.describe BinCheck do
     it 'returns exit-code 0 and expected overridden output' do
       expect do
         begin
-          BinCheck.run do
+          BinCheck.run :no_defaults do
             hello_script do
               command 'echo hello'
               success_message 'I passed :)'
@@ -49,7 +49,7 @@ RSpec.describe BinCheck do
     it 'returns exit-code 0 and expected appended output' do
       expect do
         begin
-          BinCheck.run do
+          BinCheck.run :no_defaults do
             hello_script do
               command 'echo hello'
               success_message '+I passed :)'
@@ -64,7 +64,7 @@ RSpec.describe BinCheck do
     it 'returns exit-code 1 and expected error-output' do
       expect do
         begin
-          BinCheck.run do
+          BinCheck.run :no_defaults do
             exit1_script do
               command './spec/spec-files/test_script_exit1'
             end
@@ -78,7 +78,7 @@ RSpec.describe BinCheck do
     it 'returns exit-code 1 and expected non-error-output' do
       expect do
         begin
-          BinCheck.run do
+          BinCheck.run :no_defaults do
             exit1_script do
               command './spec/spec-files/test_script_exit1_no_error_output'
             end
@@ -92,7 +92,7 @@ RSpec.describe BinCheck do
     it 'returns exit-code 1 and expected overridden error-output' do
       expect do
         begin
-          BinCheck.run do
+          BinCheck.run :no_defaults do
             exit1_script do
               command './spec/spec-files/test_script_exit1'
               error_message 'it failed...'
@@ -107,7 +107,7 @@ RSpec.describe BinCheck do
     it 'returns exit-code 1 and expected appended error-output' do
       expect do
         begin
-          BinCheck.run do
+          BinCheck.run :no_defaults do
             exit1_script do
               command './spec/spec-files/test_script_exit1'
               error_message '+it failed...'
@@ -122,7 +122,7 @@ RSpec.describe BinCheck do
     it 'uses the common configuration right' do
       expect do
         begin
-          BinCheck.run do
+          BinCheck.run :no_defaults do
             cute_scripts do
               success_message '+common configuration'
               hello_script do
@@ -142,7 +142,7 @@ RSpec.describe BinCheck do
     it 'runns scripts parallel' do
       start_time = Time.now
       begin
-        BinCheck.run do
+        BinCheck.run :no_defaults do
           sleep1 do
             command './spec/spec-files/test_script_sleep1'
           end
@@ -173,7 +173,7 @@ RSpec.describe BinCheck do
     it 'returns cached output and exit-code' do
       expect do
         begin
-          BinCheck.run do
+          BinCheck.run :no_defaults do
             exit0 do
               command './spec/spec-files/test_script_exit0'
               files %w(./spec/spec-files/file1 ./spec/spec-files/file2)
@@ -192,7 +192,7 @@ RSpec.describe BinCheck do
     it 'saves output and exit-code to files in folder named by given name' do
       expect do
         begin
-          BinCheck.run do
+          BinCheck.run :no_defaults do
             exit0 do
               command './spec/spec-files/test_script_exit0'
               files %w(./spec/spec-files/file1 ./spec/spec-files/file2)
