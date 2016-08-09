@@ -107,7 +107,6 @@ class DefaultScripts
     @default_scripts << DSLConfig.new('rubocop_autocorrect') do
       command 'bundle exec rubocop -a -D -c .rubocop.yml'
       files ['app/**/*.rb', 'spec/**/*.rb']
-      error_message '+Tried to auto correct the issues, but must be reviewed manually, commit aborted'
     end
   end
 
@@ -163,7 +162,6 @@ class DefaultScripts
     @default_scripts << DSLConfig.new('rspec') do
       command 'bundle exec rspec'
       files ['app/**/*.rb', 'spec/**/*.rb']
-      error_message '+rspec did not run successfully, commit aborted'
     end
   end
 end
