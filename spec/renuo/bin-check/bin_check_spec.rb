@@ -35,7 +35,7 @@ RSpec.describe BinCheck do
           command 'rubocop'
           reversed_exit false
         end
-        t0d0_finder do
+        p_finder do
           command 'blubb-blubb'
           reversed_exit true
         end
@@ -44,7 +44,7 @@ RSpec.describe BinCheck do
     expect(BinCheck.configs.first.configs.merge(BinCheck.configs.first.children.first.configs))
       .to eq(name: 'rubocop', files: 'lib/**/*.rb', command: 'rubocop', reversed_exit: false)
     expect(BinCheck.configs.first.configs.merge(BinCheck.configs.first.children[1].configs))
-      .to eq(name: 't0d0_finder', files: 'lib/**/*.rb', command: 'blubb-blubb', reversed_exit: true)
+      .to eq(name: 'p_finder', files: 'lib/**/*.rb', command: 'blubb-blubb', reversed_exit: true)
   end
 
   it 'calls super if no block is given' do

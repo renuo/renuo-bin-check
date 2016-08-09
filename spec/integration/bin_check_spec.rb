@@ -120,8 +120,6 @@ RSpec.describe BinCheck do
     end
 
     it 'uses the common configuration right' do
-      # success_option_1 =
-      # success_option_2 = "bye\ncommon configuration\nhello\ncommon configuration\n"
       expect do
         begin
           BinCheck.run do
