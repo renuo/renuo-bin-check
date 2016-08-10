@@ -49,6 +49,18 @@ RSpec.describe BinCheck do
       .to eq(name: 'p_finder', files: 'lib/**/*.rb', command: 'blubb-blubb', reversed_exit: true)
   end
 
+  it 'excluds unwanted default checks' do
+    expect(BinCheck).to receive(:initialize_checks).and_return(true)
+
+    BinCheck.run do
+      exclude :config_log
+    end
+
+    BinCheck.configs.each do |config|
+      expect(config.configs).not_to include(name: 'config_log')
+    end
+  end
+
   it 'calls super if no block is given' do
     expect { BinCheck.blubb }.to raise_error(NoMethodError)
   end
