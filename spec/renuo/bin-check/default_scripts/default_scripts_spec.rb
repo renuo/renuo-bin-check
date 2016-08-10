@@ -67,10 +67,10 @@ RSpec.describe DefaultScripts do
       )
   end
 
-  it '#put_without_brackets' do
+  it '#puts_without_brackets' do
     expect(default_scripts.puts_without_brackets.last.configs)
       .to eq(
-        name: 'put_without_brackets',
+        name: 'puts_without_brackets',
         command: "grep -i -r '  puts ' app spec",
         reversed_exit: true,
         files: ['app/**/*', 'spec/**/*'],
@@ -78,10 +78,10 @@ RSpec.describe DefaultScripts do
       )
   end
 
-  it '#put_with_brackets' do
+  it '#puts_with_brackets' do
     expect(default_scripts.puts_with_brackets.last.configs)
       .to eq(
-        name: 'put_with_brackets',
+        name: 'puts_with_brackets',
         command: "grep -i -r '  puts(' app spec",
         reversed_exit: true,
         files: ['app/**/*', 'spec/**/*'],

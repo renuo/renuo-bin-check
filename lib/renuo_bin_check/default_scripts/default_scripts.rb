@@ -68,7 +68,7 @@ class DefaultScripts
   end
 
   def puts_without_brackets
-    @default_scripts << DSLConfig.new('put_without_brackets') do
+    @default_scripts << DSLConfig.new('puts_without_brackets') do
       command "grep -i -r '  puts ' app spec"
       reversed_exit true
       files ['app/**/*', 'spec/**/*']
@@ -77,7 +77,7 @@ class DefaultScripts
   end
 
   def puts_with_brackets
-    @default_scripts << DSLConfig.new('put_with_brackets') do
+    @default_scripts << DSLConfig.new('puts_with_brackets') do
       command "grep -i -r '  puts(' app spec"
       reversed_exit true
       files ['app/**/*', 'spec/**/*']
