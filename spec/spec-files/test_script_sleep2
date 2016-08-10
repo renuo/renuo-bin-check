@@ -1,2 +1,3 @@
+#!/bin/zsh
 sleep 2
- exit 0
+exit 0

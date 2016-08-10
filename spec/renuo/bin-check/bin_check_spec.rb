@@ -4,6 +4,7 @@ require './lib/renuo_bin_check/bin_check'
 RSpec.describe BinCheck do
   it 'gets the right infos out of a new check' do
     expect(BinCheck).to receive(:initialize_checks).and_return(true)
+    expect_any_instance_of(DefaultScripts).to receive(:rails_defaults).and_return([])
 
     BinCheck.run do
       rubocop do
@@ -27,6 +28,7 @@ RSpec.describe BinCheck do
 
   it 'understands common configs' do
     expect(BinCheck).to receive(:initialize_checks).and_return(true)
+    expect_any_instance_of(DefaultScripts).to receive(:rails_defaults).and_return([])
 
     BinCheck.run do
       ruby_files do

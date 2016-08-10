@@ -15,7 +15,7 @@ class DSLConfig
     end
   end
 
-  def respond_to_missing?
+  def respond_to_missing?(_method_name, _include_private)
     #:nocov:
     true
     #:nocov:

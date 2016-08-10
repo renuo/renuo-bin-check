@@ -1,4 +1,5 @@
 require 'renuo_bin_check/dsl_config'
+require 'renuo_bin_check/default_scripts/default_scripts'
 
 class BinCheck
   def self.method_missing(name, *_params, &configs)
@@ -15,8 +16,8 @@ class BinCheck
     #:nocov:
   end
 
-  def self.run(&check)
-    @configs = []
+  def self.run(default = :rails_defaults, &check)
+    @configs = DefaultScripts.new.send(default)
     instance_eval(&check)
     initialize_checks
   end

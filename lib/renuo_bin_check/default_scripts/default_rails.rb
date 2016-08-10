@@ -10,8 +10,8 @@ module RenuoBinCheck
       mini_profiler(bin_check)
       todo(bin_check)
       console_log(bin_check)
-      put_without_brackets(bin_check)
-      put_with_brackets(bin_check)
+      puts_without_brackets(bin_check)
+      puts_with_brackets(bin_check)
       pp_and_p(bin_check)
       p_with_brackets(bin_check)
       rubocop_autocorrect(bin_check)
@@ -52,7 +52,7 @@ module RenuoBinCheck
       end
     end
 
-    def put_without_brackets(bin_check)
+    def puts_without_brackets(bin_check)
       bin_check.check do |config|
         config.command "grep -i -r '  puts ' app spec"
         config.reversed_exit true
@@ -60,7 +60,7 @@ module RenuoBinCheck
       end
     end
 
-    def put_with_brackets(bin_check)
+    def puts_with_brackets(bin_check)
       bin_check.check do |config|
         config.command "grep -i -r '  puts(' app spec"
         config.reversed_exit true
@@ -143,8 +143,8 @@ module RenuoBinCheck
     module_function :mini_profiler
     module_function :todo
     module_function :console_log
-    module_function :put_without_brackets
-    module_function :put_with_brackets
+    module_function :puts_without_brackets
+    module_function :puts_with_brackets
     module_function :pp_and_p
     module_function :p_with_brackets
     module_function :rubocop_autocorrect

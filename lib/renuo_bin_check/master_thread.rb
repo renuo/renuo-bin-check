@@ -22,7 +22,7 @@ module RenuoBinCheck
       until waiter.empty?
         result = waiter.next_wait[:result]
         @results << result
-        exit_with_error(result) if result.exit_code == 1
+        exit_with_error(result) if result.exit_code.nonzero?
       end
       exit_with_success
     end
