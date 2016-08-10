@@ -16,8 +16,8 @@ class DefaultScripts
   def rails_defaults
     todo
     console_log
-    put_with_brackets
-    put_without_brackets
+    puts_with_brackets
+    puts_without_brackets
     pp_and_p
     p_with_brackets
     rubocop_autocorrect
@@ -34,8 +34,8 @@ class DefaultScripts
   def rails_coffee_script_defaults
     todo
     console_log
-    put_with_brackets
-    put_without_brackets
+    puts_with_brackets
+    puts_without_brackets
     pp_and_p
     p_with_brackets
     rubocop_autocorrect
@@ -67,7 +67,7 @@ class DefaultScripts
     end
   end
 
-  def put_without_brackets
+  def puts_without_brackets
     @default_scripts << DSLConfig.new('put_without_brackets') do
       command "grep -i -r '  puts ' app spec"
       reversed_exit true
@@ -76,7 +76,7 @@ class DefaultScripts
     end
   end
 
-  def put_with_brackets
+  def puts_with_brackets
     @default_scripts << DSLConfig.new('put_with_brackets') do
       command "grep -i -r '  puts(' app spec"
       reversed_exit true

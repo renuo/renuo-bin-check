@@ -7,8 +7,8 @@ RSpec.describe DefaultScripts do
   it 'uses all scripts needed for rails default' do
     expect(default_scripts).to receive(:todo)
     expect(default_scripts).to receive(:console_log)
-    expect(default_scripts).to receive(:put_with_brackets)
-    expect(default_scripts).to receive(:put_without_brackets)
+    expect(default_scripts).to receive(:puts_with_brackets)
+    expect(default_scripts).to receive(:puts_without_brackets)
     expect(default_scripts).to receive(:pp_and_p)
     expect(default_scripts).to receive(:p_with_brackets)
     expect(default_scripts).to receive(:rubocop_autocorrect)
@@ -25,8 +25,8 @@ RSpec.describe DefaultScripts do
   it 'uses all scripts needed for rails default if coffee is used' do
     expect(default_scripts).to receive(:todo)
     expect(default_scripts).to receive(:console_log)
-    expect(default_scripts).to receive(:put_with_brackets)
-    expect(default_scripts).to receive(:put_without_brackets)
+    expect(default_scripts).to receive(:puts_with_brackets)
+    expect(default_scripts).to receive(:puts_without_brackets)
     expect(default_scripts).to receive(:pp_and_p)
     expect(default_scripts).to receive(:p_with_brackets)
     expect(default_scripts).to receive(:rubocop_autocorrect)
@@ -68,7 +68,7 @@ RSpec.describe DefaultScripts do
   end
 
   it '#put_without_brackets' do
-    expect(default_scripts.put_without_brackets.last.configs)
+    expect(default_scripts.puts_without_brackets.last.configs)
       .to eq(
         name: 'put_without_brackets',
         command: "grep -i -r '  puts ' app spec",
@@ -79,7 +79,7 @@ RSpec.describe DefaultScripts do
   end
 
   it '#put_with_brackets' do
-    expect(default_scripts.put_with_brackets.last.configs)
+    expect(default_scripts.puts_with_brackets.last.configs)
       .to eq(
         name: 'put_with_brackets',
         command: "grep -i -r '  puts(' app spec",

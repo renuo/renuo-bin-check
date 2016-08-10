@@ -143,8 +143,8 @@ module RenuoBinCheck
     module_function :mini_profiler
     module_function :todo
     module_function :console_log
-    module_function :put_without_brackets
-    module_function :put_with_brackets
+    module_function :puts_without_brackets
+    module_function :puts_with_brackets
     module_function :pp_and_p
     module_function :p_with_brackets
     module_function :rubocop_autocorrect
