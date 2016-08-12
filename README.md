@@ -15,25 +15,51 @@ gem 'renuo-bin-check', group: :bin_check
 ```
 
 Create a file at any place you want. Usually it would be called `bin/check though.
-You can now configure your scripts like that:
+You can now configure your checks like that:
 
 ```rb
-
+#require renuo_bin_check in your file
 require 'bundler/setup'
 Bundler.require(:bin_check)
 
-bin_check = RenuoBinCheck::Initializer.new
-
-# add a script, do this for as many scripts as you would like to run
-bin_check.check do |config|
-  config.command "<a one line command or a path to a script>"
-  config.name "<name-of-script>"
-  config.files ['<path-to-file-1>', '<path-to-file-2>']
-  config.reversed_exit <true or false>
+# run bin-check with rails-defaults
+BinCheck.run do
+  #add a new check
+  <name-of-check> do
+    command "<a one line command or a path to a script>"
+    files ['<path-to-file-1>', '<path-to-file-2>']
+    reversed_exit <true or false>
+    success_message '<output to display if script succeeds>'
+    error_message '<output to display if script fails>'
+  end
+  
+  #exclude a default check
+  exclude :<name-of-default-check>
 end
 
-#run all scripts configured above
-bin_check.run
+```
+
+It is also possible to have common configurations and to not run the rails-defaults:
+
+```rb
+#run bin without defaults
+BinCheck.run :no_defaults do
+  # define common settings for all checks in the block
+  <name of your common configuration> do
+    reversed_exit <true or false>
+    success_message '<output to display if script succeeds>'
+    error_message '<output to display if script fails>'
+    
+    # add check
+    <name-of-check> do
+        # add specific settings for this check
+        command "<a one line command or a path to a script>"
+        files ['<path-to-file-1>', '<path-to-file-2>']
+        # override common settings
+        reversed_exit <true or false>
+      end
+  end
+end
 ```
 
 ## Setup
@@ -56,16 +82,6 @@ The following script will run *rspec*, *rubocop*, *reek*, scanner for debugging 
 
 This option is required. It is either a one-liner such as `ls -al` or a path to a script, that will be runned.
 If command is not configured, the program will raise a RuntimeError.
-
-#### name
-
-This option is optional. It makes it possible to configure the name of the script. 
-It will be used as folder name in the cache.
-
-If it is not set, the hashed command will be used as folder name in the cache.
-
-Attention: If you set the same name twice, it won't raise an error, 
-but it can cause unexpected behaviour, hence it is not recommanded to do so.
 
 #### files
 
@@ -101,22 +117,82 @@ If set to truthy, the output of the configured script will be reversed. Which me
 An example where this option is used, is the command that searches for TODOs. 
 The script should fail though if something is found and not if nothing is found.
 
+### Defaults
+
+For using renuo-bin-check for checking rails applications we have defaults the following defaults:
+
+Usage of defaults:
+
+```
+# use defaults, or don't use any by using :no-defaults
+BinCheck.run :<name-of-default> {}
+```
+
+Excluding specific checks from defaults example:
+
+```
+BinCheck.run :rails_coffee_script_defaults do
+  exclude :todo
+  exclude :reek
+end
+```
+
+#### rails_defaults (will be used if no default is given)
+
+It includes following checks:
+* todo (searches for todos in the code)
+* console_log (searches for console_log in the code)
+* puts_with_brackets  (searches for puts( in the code)
+* puts_without_brackets (searches for puts in the code)
+* pp_and_p  (searches for p and pp in the code)
+* p_with_brackets (searches for p( in the code)
+* rubocop_autocorrect (runs rubocop with autocorrection)
+* slim_lint (runs slim_lint)
+* scss_lint (runs scss_lint ATTENTION: THIS DOESN'T WORK YET)
+* tslint  (runs tslint)
+* brakeman (runs brakeman)
+* reek (runs reek ATTENTION: THIS DOESN'T WORK YET)
+* rspec (runs rspec)
+
+#### rails_coffee_script_defaults
+
+It includes following checks:
+* todo (searches for todos in the code)
+* console_log (searches for console_log in the code)
+* puts_with_brackets  (searches for puts( in the code)
+* puts_without_brackets (searches for puts in the code)
+* pp_and_p  (searches for p and pp in the code)
+* p_with_brackets (searches for p( in the code)
+* rubocop_autocorrect (runs rubocop with autocorrection)
+* slim_lint (runs slim_lint)
+* scss_lint (runs scss_lint ATTENTION: THIS DOESN'T WORK YET)
+* coffeelint  (runs coffeelint ATTENTION: THIS ISN'T TESTED YET)
+* brakeman (runs brakeman)
+* reek (runs reek ATTENTION: THIS DOESN'T WORK YET)
+* rspec (runs rspec)
+
 ### Example
 
 The following example configures a script that looks for TODOs in a project.
 The configuration options can be called in any order.
 
 ```rb
-bin_check.check do |config|
-  config.command "grep --exclude-dir='app/assets/typings/**' -i -r 'TODO'"\
-                  "app spec config db Rakefile README.md Gemfile"
-  config.name "todo-grepper"
-  config.files ['app/**/*', 'spec/**/*', 'config/**/*', 'db/**/*', 'Rakefile', 'README.md', 'Gemfile']
-  config.success_message "No TODO was found :)"
-  config.error_message "+TODO found! Please get rid of them"
-  config.reversed_exit true
+BinCheck do
+  todo-grepper do
+    command "grep --exclude-dir='app/assets/typings/**' -i -r 'TODO'"\
+                    "app spec config db Rakefile README.md Gemfile"
+    files ['app/**/*', 'spec/**/*', 'config/**/*', 'db/**/*', 'Rakefile', 'README.md', 'Gemfile']
+    success_message "No TODO was found :)"
+    error_message "+TODO found! Please get rid of them"
+    reversed_exit true
+  end
 end
 ```
+
+## Known Bugs
+
+* scss-lint doesnt work yet with renuo-bin-check
+* reek doesnt work yet with renuo-bin-check
 
 ## Contribute
 
