@@ -37,7 +37,7 @@ module RenuoBinCheck
     end
 
     def reverse_result
-      Result.new(@result.error_output, @result.standard_output, @result.exit_code == 0 ? 1 : 0)
+      Result.new(@result.error_output, @result.standard_output, @result.exit_code.zero? ? 1 : 0)
     end
   end
 end
