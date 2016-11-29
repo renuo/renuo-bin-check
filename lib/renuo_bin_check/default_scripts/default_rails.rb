@@ -108,7 +108,7 @@ module RenuoBinCheck
     def tslint(bin_check)
       bin_check.check do |config|
         config.command 'tslint -c tslint.json app/assets/javascripts/**/*.ts'
-        config.files ['app/assets/javascripts/**/*.ts']
+        config.files ['app/**/*.ts']
       end
     end
 
@@ -128,14 +128,14 @@ module RenuoBinCheck
     def reek(bin_check)
       bin_check.check do |config|
         config.command 'bundle exec reek'
-        config.files ['app/**/*.rb']
+        config.files ['app/**/*.rb', 'config/**/*', 'db/schema.rb']
       end
     end
 
     def rspec(bin_check)
       bin_check.check do |config|
         config.command 'bundle exec rspec'
-        config.files ['app/**/*.rb', 'spec/**/*.rb']
+        config.files ['app/**/*.rb', 'spec/**/*.rb', 'config/**/*', 'db/schema.rb']
       end
     end
 

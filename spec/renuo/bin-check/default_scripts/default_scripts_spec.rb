@@ -185,7 +185,7 @@ RSpec.describe DefaultScripts do
       .to eq(
         name: 'rspec',
         command: 'bundle exec rspec',
-        files: ['app/**/*.rb', 'spec/**/*.rb']
+        files: ['app/**/*.rb', 'spec/**/*.rb', 'config/**/*', 'db/schema.rb']
       )
   end
 end

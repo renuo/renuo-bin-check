@@ -161,7 +161,7 @@ class DefaultScripts
   def rspec
     @default_scripts << DSLConfig.new('rspec') do
       command 'bundle exec rspec'
-      files ['app/**/*.rb', 'spec/**/*.rb']
+      files ['app/**/*.rb', 'spec/**/*.rb', 'config/**/*', 'db/schema.rb']
     end
   end
 end
