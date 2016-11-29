@@ -10,10 +10,8 @@ class BinCheck
     end
   end
 
-  def respond_to_missing?
-    #:nocov:
+  def self.respond_to_missing?(_name, *_params)
     true
-    #:nocov:
   end
 
   def self.run(default = :rails_defaults, &check)
