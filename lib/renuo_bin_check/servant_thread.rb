@@ -8,6 +8,7 @@ module RenuoBinCheck
       @script_config = script_config
       script_files = @script_config.script_files
       @cacher = Cacher.new(@script_config.script_name, script_files) if script_files
+      @result = nil
     end
 
     def run
