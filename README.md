@@ -25,7 +25,7 @@ Bundler.require(:bin_check)
 # run bin-check with rails-defaults
 BinCheck.run do
   #add a new check
-  <name-of-check> do
+  <name_of_check> do
     command "<a one line command or a path to a script>"
     files ['<path-to-file-1>', '<path-to-file-2>']
     reversed_exit <true or false>
@@ -45,13 +45,13 @@ It is also possible to have common configurations and to not run the rails-defau
 #run bin without defaults
 BinCheck.run :no_defaults do
   # define common settings for all checks in the block
-  <name of your common configuration> do
+  <name_of_your_common_configuration> do
     reversed_exit <true or false>
     success_message '<output to display if script succeeds>'
     error_message '<output to display if script fails>'
     
     # add check
-    <name-of-check> do
+    <name_of_check> do
         # add specific settings for this check
         command "<a one line command or a path to a script>"
         files ['<path-to-file-1>', '<path-to-file-2>']
@@ -178,7 +178,7 @@ The configuration options can be called in any order.
 
 ```rb
 BinCheck do
-  todo-grepper do
+  todo_grepper do
     command "grep --exclude-dir='app/assets/typings/**' -i -r 'TODO'"\
                     "app spec config db Rakefile README.md Gemfile"
     files ['app/**/*', 'spec/**/*', 'config/**/*', 'db/**/*', 'Rakefile', 'README.md', 'Gemfile']
