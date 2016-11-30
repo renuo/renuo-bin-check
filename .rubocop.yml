@@ -10,6 +10,11 @@ Style/Documentation:
 Style/NonNilCheck:
   IncludeSemanticChanges: true
 
+Style/FileName:
+  Exclude:
+  - 'Gemfile.local.rb'
+  - 'Gemfile.local.example.rb'
+  
 Style/FrozenStringLiteralComment:
   Enabled: false
 
