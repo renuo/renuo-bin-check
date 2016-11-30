@@ -47,6 +47,7 @@ class DefaultScripts
     rspec
     @default_scripts
   end
+
   # rubocop:enable Metrics/MethodLength
 
   def todo
@@ -161,7 +162,8 @@ class DefaultScripts
   def rspec
     @default_scripts << DSLConfig.new('rspec') do
       command 'bundle exec rspec'
-      files ['app/**/*.rb', 'spec/**/*.rb', 'config/**/*', 'db/schema.rb']
+      files ['app/**/*.rb', 'spec/**/*.rb', 'config/**/*', 'db/**/*.rb', 'lib/**/*.rb', 'lib/**/*.rake',
+             'lib/**/*.rake', 'Gemfile*', '.rspec']
     end
   end
 end

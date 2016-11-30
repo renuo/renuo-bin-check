@@ -128,14 +128,16 @@ module RenuoBinCheck
     def reek(bin_check)
       bin_check.check do |config|
         config.command 'bundle exec reek'
-        config.files ['app/**/*.rb', 'config/**/*', 'db/schema.rb']
+        config.files ['app/**/*.rb', 'spec/**/*.rb', 'config/**/*', 'db/**/*.rb', 'lib/**/*.rb', 'lib/**/*.rake',
+                      'lib/**/*.rake', 'Gemfile*', '.rspec']
       end
     end
 
     def rspec(bin_check)
       bin_check.check do |config|
         config.command 'bundle exec rspec'
-        config.files ['app/**/*.rb', 'spec/**/*.rb', 'config/**/*', 'db/schema.rb']
+        config.files ['app/**/*.rb', 'spec/**/*.rb', 'config/**/*', 'db/**/*.rb', 'lib/**/*.rb', 'lib/**/*.rake',
+                      'lib/**/*.rake', 'Gemfile*', '.rspec']
       end
     end
 
