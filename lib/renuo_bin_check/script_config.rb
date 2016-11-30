@@ -58,11 +58,15 @@ module RenuoBinCheck
     end
 
     def script_command
-      unless @script_command
-        raise 'There must be a command set for each script you want to run. Find further instruction on how to use' \
-        ' this Gem here in the Readme: https://github.com/renuo/renuo-bin-check'
-      end
+      raise_script_command_not_set unless @script_command
       @script_command
+    end
+
+    private
+
+    def raise_script_command_not_set
+      raise 'There must be a command set for each script you want to run. Find further instruction on how to use' \
+          ' this Gem here in the Readme: https://github.com/renuo/renuo-bin-check'
     end
   end
 end
