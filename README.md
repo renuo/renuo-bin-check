@@ -14,7 +14,7 @@ Add renuo-bin-check to your Gemfile:
 gem 'renuo-bin-check', group: :bin_check
 ```
 
-Create a file at any place you want. Usually it would be called `bin/check though.
+Create a file at any place you want. Usually it would be called `bin/check` though.
 You can now configure your checks like that:
 
 ```rb
