@@ -2,7 +2,6 @@ require 'renuo_bin_check/dsl_config'
 require 'renuo_bin_check/default_scripts/default_scripts'
 
 class BinCheck
-  # rubocop:disable Style/MethodMissing
   def self.method_missing(name, *_params, &configs)
     if block_given?
       @configs << DSLConfig.new(name.to_s, &configs)
@@ -10,7 +9,6 @@ class BinCheck
       super
     end
   end
-  # rubocop:enable Style/MethodMissing
 
   def self.respond_to_missing?(_name, *_params)
     true
