@@ -116,7 +116,7 @@ RSpec.describe DefaultScripts do
       .to eq(
         name: 'rubocop_autocorrect',
         command: 'bundle exec rubocop -a -D -c .rubocop.yml',
-        files: ['app/**/*.rb', 'spec/**/*.rb']
+        files: ['app/**/*.rb', 'spec/**/*.rb', 'config/**/*.rb']
       )
   end
 
