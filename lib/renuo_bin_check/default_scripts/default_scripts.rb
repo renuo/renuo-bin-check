@@ -107,7 +107,7 @@ class DefaultScripts
   def rubocop_autocorrect
     @default_scripts << DSLConfig.new('rubocop_autocorrect') do
       command 'bundle exec rubocop -a -D -c .rubocop.yml'
-      files ['app/**/*.rb', 'spec/**/*.rb']
+      files ['app/**/*.rb', 'spec/**/*.rb', 'config/**/*.rb']
     end
   end
 
