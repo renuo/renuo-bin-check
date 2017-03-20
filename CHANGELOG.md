@@ -53,3 +53,10 @@ This release introduces a new fancy DSL (yeyy) which is easier to use and brings
 * Defaults are available and can be used
 
 * Possibility to exclude specific checks of a default
+
+## Version 1.0.0.beta2
+
+Fix mistakes in Default Scripts:
+* Rubocop autocorrect fails if any issues are found, even if they can be autocorrected.
+* Rspec wont use the cache, if the Gemfile.lock has changed.
+* Rubocop wont use the cache, if any file from `config/**/*.rb` has changed.
