@@ -62,20 +62,6 @@ BinCheck.run :no_defaults do
 end
 ```
 
-## Setup
-
-    git clone git@github.com:renuo/renuo-bin-check.git
-    cd renuo-bin-check
-    bin/setup
-
-
-## Run Tests
-
-The following script will run *rspec*, *rubocop*, *reek*, scanner for debugging outputs and a scanner for TODOs
-
-    bin/check
-
-
 ### Options for Configuration
 
 #### command
@@ -193,6 +179,20 @@ end
 
 * scss-lint doesnt work yet with renuo-bin-check
 * reek doesnt work yet with renuo-bin-check
+
+## Setup
+
+    git clone git@github.com:renuo/renuo-bin-check.git
+    cd renuo-bin-check
+    bin/setup
+
+
+## Run Tests
+
+The following script will run *rspec*, *rubocop*, *reek*, scanner for debugging outputs and a scanner for TODOs
+
+    bin/check
+
 
 ## Contribute
 
