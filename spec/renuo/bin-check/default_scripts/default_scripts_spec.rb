@@ -112,12 +112,10 @@ RSpec.describe DefaultScripts do
   end
 
   it '#rubocop_autocorrect' do
-    expect(default_scripts.rubocop_autocorrect.last.configs)
-      .to eq(
-        name: 'rubocop_autocorrect',
-        command: 'bundle exec rubocop -a -D -c .rubocop.yml',
-        files: ['app/**/*.rb', 'spec/**/*.rb', 'config/**/*.rb']
-      )
+    configs = default_scripts.rubocop_autocorrect.last.configs
+    expect(configs[:name]).to eq('rubocop_autocorrect')
+    expect(configs[:command]).to end_with('lib/renuo_bin_check/default_scripts/rubocop-autocorrect.sh')
+    expect(configs[:files]).to eq(['app/**/*.rb', 'spec/**/*.rb', 'config/**/*.rb'])
   end
 
   it '#slim_lint' do
