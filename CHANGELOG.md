@@ -39,3 +39,24 @@ This was implemented as many Scripts use the Standard-Output for Outputs even if
 
 * fixed typos
 * refined readme
+
+## Version 1.0.0.beta1
+
+This release introduces a new fancy DSL (yeyy) which is easier to use and brings in much more possibilities
+
+### New Features
+
+* New DSL is implemented (old one still works for now, but the following features only work with the new one.)
+
+* Common Configuration for multiple checks
+
+* Defaults are available and can be used
+
+* Possibility to exclude specific checks of a default
+
+## Version 1.0.0.beta2
+
+Fix mistakes in Default Scripts:
+* Rubocop autocorrect fails if any issues are found, even if they can be autocorrected.
+* Rspec wont use the cache, if the Gemfile.lock has changed.
+* Rubocop wont use the cache, if any file from `config/**/*.rb` has changed.
